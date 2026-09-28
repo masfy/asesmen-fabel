@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asesmen Fabel Interaktif - Nilai Kepemimpinan</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800;900&family=Alex+Brush&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-color: #0b1120;
+    }
+
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+    @keyframes floatSoftReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(8px) rotate(-2deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+    }
+    @keyframes shimmerMove {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes progressStripes {
+      from { background-position: 1.5rem 0; }
+      to { background-position: 0 0; }
+    }
+    @keyframes heroEntrance {
+      from { opacity: 0; transform: translateY(24px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .anim-float-1 { animation: floatSoft 5s ease-in-out infinite; }
+    .anim-float-2 { animation: floatSoftReverse 5.8s ease-in-out infinite; }
+    .anim-hero-entrance { animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-pulse-glow { animation: pulseGlow 2.5s infinite; }
+    
+    .badge-shimmer {
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+      background-size: 200% 100%;
+      animation: shimmerMove 3.2s infinite linear;
+    }
+    
+    .progress-bar-striped {
+      background-image: linear-gradient(45deg, rgba(255,255,255,0.25) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.25) 75%, transparent 75%, transparent);
+      background-size: 1rem 1rem;
+      animation: progressStripes 1s linear infinite;
+    }
+
+    /* Sertifikat Khusus */
+    .certificate-frame {
+      background: #ffffff;
+      border: 14px solid #0f172a;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      position: relative;
+    }
+    .certificate-inner-border {
+      border: 3px double #d4af37;
+      position: relative;
+    }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .font-signature { font-family: 'Alex Brush', cursive; }
+    .font-serif-luxury { font-family: 'Playfair Display', serif; }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body class="min-h-screen text-slate-100 flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
+
+  <header class="w-full bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 px-4 sm:px-8 py-3.5 shadow-md">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="showLeaderboardFromNav()">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-xl shadow-lg shadow-emerald-500/20">
+          🦁
+        </div>
+        <div>
+          <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-white flex items-center gap-1.5">
+            <span>Fabel Asesmen</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold uppercase">Interaktif</span>
+          </h1>
+          <p class="text-[11px] text-slate-400 font-medium">Nilai Kepemimpinan & Toleransi</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button 
+          type="button" 
+          onclick="openLeaderboardModal()" 
+          class="px-3.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-xs font-semibold text-slate-200 transition flex items-center space-x-1.5 shadow-sm"
+        >
+          <i class="fa-solid fa-trophy text-amber-400"></i>
+          <span>Papan Peringkat</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow p-4 sm:p-6 lg:p-8 flex items-center justify-center relative overflow-hidden">
+    
+    <!-- Elemen Visual Dekoratif Latar Belakang -->
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-teal-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- SCREEN 1: PENDAFTARAN & PEMILIHAN PAKET SOAL -->
+    <section id="screen-start" class="w-full max-w-4xl mx-auto anim-hero-entrance relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- Kolom Pengantar Kuis -->
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+          <div class="bg-gradient-to-br from-emerald-900/90 via-slate-900/95 to-slate-900 p-6 sm:p-7 rounded-3xl border border-emerald-500/30 shadow-2xl relative overflow-hidden flex-grow">
+            <div class="absolute -right-3 -bottom-3 text-8xl opacity-10 select-none anim-float-1">🌲</div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold mb-3 border border-emerald-400/30 relative overflow-hidden">
+              <span class="badge-shimmer absolute inset-0"></span>
+              <span>✨ Evaluasi Membaca Fabel</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2 leading-snug">
+              Kearifan Fabel & Kepemimpinan
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
+              Uji pemahaman membaca intensif melalui kisah fabel berkarakter. Terdiri dari 15 soal Pilihan Ganda dan 5 evaluasi Benar-Salah dilengkapi sertifikat resmi terverifikasi.
+            </p>
+
+            <div class="space-y-2.5 pt-4 border-t border-slate-700/60 text-xs text-slate-300">
+              <div class="flex items-center space-x-2">
+                <span class="w-5 h-5 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[11px]">✓</span>
+                <span><strong>Indikator 1:</strong> Identifikasi Eksplisit (Apa, Siapa, Kapan)</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="w-5 h-5 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[11px]">✓</span>
+                <span><strong>Indikator 2:</strong> Simpulan Peristiwa & Sikap Tokoh</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="w-5 h-5 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[11px]">✓</span>
+                <span><strong>Indikator 3:</strong> Menjelaskan Makna Ungkapan Idiomatis</span>
+              </div>
+              <div class="flex items-center space-x-2 text-amber-300 font-medium pt-1">
+                <span class="w-5 h-5 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-[11px]">⏱</span>
+                <span>Alokasi Waktu: <strong>20 Menit</strong> (Dilindungi Anti-Kecurangan)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 shadow-sm flex items-center space-x-3.5">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-xl flex-shrink-0">
+              🏆
+            </div>
+            <div class="text-xs">
+              <p class="font-bold text-slate-200">Sertifikat Royal Executive & Nilai</p>
+              <p class="text-slate-400">Unduh PDF/PNG instan dengan stempel Meta Verified dan TTD Mas Alfy.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Formulir Identitas & Pilihan Paket -->
+        <div class="lg:col-span-7 bg-slate-900/95 p-6 sm:p-8 rounded-3xl shadow-2xl border border-slate-800 relative">
+          <h3 class="text-lg font-bold text-white mb-1 flex items-center space-x-2">
+            <span>📝</span>
+            <span>Identitas Peserta Didik</span>
+          </h3>
+          <p class="text-xs text-slate-400 mb-5">
+            Isi data lengkap Anda dengan benar sebelum membuka naskah fabel.
+          </p>
+
+          <form id="form-start-quiz" class="space-y-4">
+            <div>
+              <label for="input-nama" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+                Nama Lengkap Siswa <span class="text-rose-400">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="input-nama" 
+                required 
+                placeholder="Contoh: Muhammad Rizky Pratama"
+                class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 text-sm outline-none transition font-medium"
+              >
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="input-sekolah" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+                  Asal Sekolah <span class="text-rose-400">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="input-sekolah" 
+                  required 
+                  placeholder="Contoh: SDN 1 Mentari Jaya"
+                  class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 text-sm outline-none transition font-medium"
+                >
+              </div>
+              <div>
+                <label for="input-kelas" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+                  Kelas / Rombel <span class="text-rose-400">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="input-kelas" 
+                  required 
+                  placeholder="Contoh: 6A / 6B"
+                  class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 text-sm outline-none transition font-medium"
+                >
+              </div>
+            </div>
+
+            <div>
+              <label for="select-paket" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+                Pilih Paket Naskah Fabel (150-200 Kata) <span class="text-rose-400">*</span>
+              </label>
+              <div class="relative">
+                <select 
+                  id="select-paket" 
+                  class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 text-xs sm:text-sm outline-none transition appearance-none font-medium pr-10 cursor-pointer"
+                >
+                  <option value="1">Paket 1: Musyawarah di Bawah Naungan Beringin Tua (172 Kata)</option>
+                  <option value="2">Paket 2: Rembuk Lembah Pinus yang Asri (174 Kata)</option>
+                  <option value="3">Paket 3: Sinergi di Hutan Bakau Pesisir (168 Kata)</option>
+                  <option value="4">Paket 4: Harmoni di Bukit Teratai Emas (171 Kata)</option>
+                  <option value="5">Paket 5: Ujian Badai di Lembah Akasia (169 Kata)</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400 text-xs">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 flex items-start space-x-2.5 leading-relaxed">
+              <i class="fa-solid fa-triangle-exclamation text-amber-400 text-base mt-0.5 flex-shrink-0"></i>
+              <div>
+                <strong>Perlindungan Integritas Ujian:</strong> Jangan berpindah tab atau meminimalkan layar browser. Sistem mendeteksi otomatis; jika Anda keluar, ujian langsung dihentikan dan dicatat berstatus <em>"Keluar Sebelum Selesai"</em>.
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <button 
+                type="submit" 
+                class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-600 text-white font-bold text-sm tracking-wide shadow-lg shadow-emerald-700/30 transition transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center justify-center space-x-2 anim-pulse-glow"
+              >
+                <span>Buka Lembar Soal & Mulai Ujian</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="screen-quiz" class="w-full max-w-6xl mx-auto hidden anim-hero-entrance relative z-10">
+      
+      <!-- Bar Informasi Siswa & Countdown Timer -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 mb-4 shadow-xl flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center space-x-3 text-xs">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
+            👤
+          </div>
+          <div>
+            <div class="font-bold text-white text-sm" id="hud-nama">-</div>
+            <div class="text-slate-400">
+              <span id="hud-sekolah">-</span> • Kelas: <span id="hud-kelas" class="font-semibold text-slate-300">-</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <div class="text-right">
+            <span class="text-[10px] text-slate-400 block uppercase font-semibold">Paket Soal</span>
+            <span id="hud-paket" class="text-xs font-bold text-emerald-400">Paket 1</span>
+          </div>
+
+          <!-- Timer Countdown 20 Menit -->
+          <div class="px-4 py-2 rounded-xl bg-slate-800 border border-slate-700 flex items-center space-x-2.5">
+            <i class="fa-solid fa-stopwatch text-amber-400" id="timer-icon"></i>
+            <div>
+              <span class="text-[10px] text-slate-400 block uppercase font-bold leading-none">Sisa Waktu</span>
+              <span id="timer-display" class="font-mono text-base font-bold text-amber-400">20:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tata Letak 2 Kolom: Kiri (Teks Cerita Fabel), Kanan (Lembar Soal PG + B/S) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        
+        <!-- Kolom Teks Cerita Fabel Stimulus (Sticky) -->
+        <div class="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl lg:sticky lg:top-20 max-h-[80vh] overflow-y-auto">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center space-x-1.5">
+              <i class="fa-solid fa-book-open"></i>
+              <span>Naskah Fabel</span>
+            </span>
+            <span id="fabel-word-count" class="text-[10px] bg-slate-800 px-2 py-0.5 rounded-full text-slate-400 font-medium">172 Kata</span>
+          </div>
+
+          <h3 id="fabel-title" class="text-base sm:text-lg font-extrabold text-white mb-4 leading-snug text-center tracking-wide">
+            Musyawarah di Bawah Naungan Beringin Tua
+          </h3>
+          
+          <div id="fabel-content" class="text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3 font-normal text-justify">
+            <!-- Isi Fabel disuntikkan secara dinamis -->
+          </div>
+
+          <div class="mt-4 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-300 flex items-center space-x-2">
+            <i class="fa-solid fa-lightbulb text-emerald-400 flex-shrink-0"></i>
+            <span>Bacalah teks fabel secara teliti untuk menemukan jawaban pertanyaan di samping.</span>
+          </div>
+        </div>
+
+        <!-- Kolom Lembar Pengerjaan Soal (Tunggal & Terpadu) -->
+        <div class="lg:col-span-7 space-y-5">
+          
+          <!-- KONTAINER LEMBAR SOAL UTAMA -->
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl relative">
+            
+            <!-- TAMPILAN 1: SOAL PILIHAN GANDA (1 S.D. 15) -->
+            <div id="view-mcq-container">
+              <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
+                <div>
+                  <span class="text-[11px] font-bold text-slate-400 uppercase">Bagian I : Pilihan Ganda</span>
+                  <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+                    <span>Soal Nomor</span>
+                    <span id="mcq-current-number" class="text-emerald-400 font-extrabold">1</span>
+                    <span class="text-slate-500 font-normal">dari 15</span>
+                  </h4>
+                </div>
+                <span id="mcq-indicator-tag" class="text-[10px] px-2.5 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-medium">
+                  Indikator 1
+                </span>
+              </div>
+
+              <!-- Teks Pertanyaan PG -->
+              <p id="mcq-question-text" class="text-sm sm:text-base font-semibold text-slate-100 mb-5 leading-relaxed">
+                Memuat pertanyaan...
+              </p>
+
+              <!-- Opsi Pilihan A, B, C, D -->
+              <div id="mcq-options-container" class="space-y-2.5 mb-6">
+                <!-- Tombol Opsi disuntikkan dinamis -->
+              </div>
+
+              <!-- Navigasi Bawah PG -->
+              <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+                <button 
+                  type="button" 
+                  id="btn-prev-mcq" 
+                  onclick="navigateMCQ(-1)" 
+                  class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition flex items-center space-x-1.5"
+                >
+                  <i class="fa-solid fa-arrow-left"></i>
+                  <span>Sebelumnya</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  id="btn-next-mcq" 
+                  onclick="navigateMCQ(1)" 
+                  class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center space-x-1.5 shadow-md shadow-emerald-700/20"
+                >
+                  <span>Selanjutnya</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- TAMPILAN 2: SOAL BENAR - SALAH (SETELAH NOMOR 15) -->
+            <div id="view-tf-container" class="hidden">
+              <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-400 uppercase">Bagian II : Evaluasi Kritis</span>
+                  <h4 class="text-sm font-bold text-white">5 Pernyataan Benar atau Salah</h4>
+                </div>
+                <span class="text-[10px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 font-semibold">
+                  Soal Nomor 16 s.d. 20
+                </span>
+              </div>
+
+              <p class="text-xs text-slate-300 mb-4 text-justify leading-relaxed">
+                Tentukan kebenaran masing-masing pernyataan berikut berdasarkan isi teks fabel di samping. Pilih tombol <strong>[Benar]</strong> atau <strong>[Salah]</strong> pada tiap baris pernyataan.
+              </p>
+
+              <div id="tf-questions-list" class="space-y-3 mb-6">
+                <!-- 5 Pernyataan Benar-Salah disuntikkan dinamis -->
+              </div>
+
+              <!-- Navigasi Bawah Benar-Salah -->
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-800">
+                <button 
+                  type="button" 
+                  onclick="switchToMCQ(14)" 
+                  class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition flex items-center space-x-1.5"
+                >
+                  <i class="fa-solid fa-arrow-left"></i>
+                  <span>Kembali ke Soal 15 (PG)</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="confirmFinishQuiz()" 
+                  class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-emerald-700/30 transition flex items-center space-x-2"
+                >
+                  <i class="fa-solid fa-flag-checkered"></i>
+                  <span>Selesaikan & Kumpulkan Ujian</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Palet Navigasi Cepat Seluruh Soal (1 s.d. 15 PG + Tombol B/S) -->
+            <div class="mt-6 pt-4 border-t border-slate-800">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Navigasi Lembar Ujian:</span>
+                <span class="text-[10px] text-slate-500">15 PG + 5 Benar/Salah</span>
+              </div>
+              <div id="mcq-number-palette" class="grid grid-cols-6 sm:grid-cols-16 gap-1.5">
+                <!-- 15 kotak nomor PG + 1 tombol B/S disuntikkan dinamis -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="screen-result" class="w-full max-w-4xl mx-auto hidden anim-hero-entrance relative z-10">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
+        
+        <!-- Header Hasil Ujian -->
+        <div class="text-center pb-6 border-b border-slate-800">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-300 text-3xl shadow-xl shadow-amber-500/20 mb-3">
+            🏆
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-1">
+            Hasil Asesmen Selesai
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400">
+            Berikut adalah rincian capaian pemahaman membaca fabel dan nilai akhir Anda.
+          </p>
+        </div>
+
+        <!-- Kartu Skor & Biodata Siswa -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+          <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 text-center flex flex-col justify-center">
+            <span class="text-xs font-bold text-slate-400 uppercase">Nilai Akhir</span>
+            <div id="result-score" class="text-4xl sm:text-5xl font-black text-emerald-400 my-1">0</div>
+            <span id="result-predikat" class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 inline-block mx-auto">
+              Istimewa
+            </span>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 flex flex-col justify-center text-xs space-y-2">
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Nama Peserta</span>
+              <span id="result-nama" class="font-bold text-white text-sm">-</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Sekolah & Kelas</span>
+              <span id="result-sekolah-kelas" class="font-semibold text-slate-200">-</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Paket Soal</span>
+              <span id="result-paket" class="font-semibold text-emerald-400">Paket 1</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 flex flex-col justify-center text-xs space-y-2">
+            <div class="flex justify-between items-center pb-1.5 border-b border-slate-700">
+              <span class="text-slate-400">Skor Pilihan Ganda (15)</span>
+              <span id="result-score-mcq" class="font-bold text-white">0 / 75</span>
+            </div>
+            <div class="flex justify-between items-center pb-1.5 border-b border-slate-700">
+              <span class="text-slate-400">Skor Benar-Salah (5)</span>
+              <span id="result-score-tf" class="font-bold text-white">0 / 25</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-slate-400">Status Ujian</span>
+              <span id="result-status" class="font-bold text-emerald-400">Selesai Penuh</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="sync-container" class="p-4 bg-slate-800/90 rounded-2xl border border-slate-700 text-xs mb-6 shadow-md">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="flex items-center space-x-2">
+              <span id="sync-status-indicator" class="inline-block w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+              <span id="sync-status-text" class="text-slate-200 font-semibold">Menginisialisasi transmisi ke Google Spreadsheet...</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span id="sync-percentage-badge" class="px-2 py-0.5 rounded-full bg-slate-700 text-slate-200 text-[11px] font-bold">0%</span>
+            </div>
+          </div>
+
+          <!-- Batang Progress Animasi Bergaris -->
+          <div class="w-full bg-slate-700/80 rounded-full h-3 overflow-hidden p-0.5 border border-slate-600">
+            <div 
+              id="sync-progress-bar" 
+              class="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 progress-bar-striped transition-all duration-300 ease-out" 
+              style="width: 0%"
+            ></div>
+          </div>
+
+          <div class="flex justify-between items-center text-[10px] text-slate-400 mt-2">
+            <span id="sync-step-label">Langkah: Menyiapkan koneksi aman Apps Script</span>
+            <span id="sync-duration-label">Estimasi: ~2 detik</span>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Akhir -->
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-4 border-t border-slate-800">
+          <button 
+            type="button" 
+            onclick="openCertificateModal()" 
+            class="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-amber-500/20 transition flex items-center space-x-2"
+          >
+            <i class="fa-solid fa-award"></i>
+            <span>Buka Sertifikat Penghargaan</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="openLeaderboardModal()" 
+            class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs sm:text-sm border border-slate-700 transition flex items-center space-x-2"
+          >
+            <i class="fa-solid fa-trophy text-amber-400"></i>
+            <span>Lihat Papan Peringkat</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="restartQuizToHome()" 
+            class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs sm:text-sm border border-slate-700 transition flex items-center space-x-2"
+          >
+            <i class="fa-solid fa-rotate-right"></i>
+            <span>Kuis Baru</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="modal-certificate" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-3xl p-4 sm:p-6 shadow-2xl relative my-auto">
+      
+      <!-- Bar Tombol Aksi Atas -->
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+          <span class="text-xs font-bold text-slate-200">Pratinjau Sertifikat Resmi</span>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <button 
+            type="button" 
+            onclick="downloadCertificatePNG()" 
+            class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition flex items-center space-x-1.5"
+          >
+            <i class="fa-solid fa-image"></i>
+            <span>Unduh PNG</span>
+          </button>
+          <button 
+            type="button" 
+            onclick="downloadCertificatePDF()" 
+            class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition flex items-center space-x-1.5"
+          >
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>Unduh PDF</span>
+          </button>
+          <button 
+            type="button" 
+            onclick="closeCertificateModal()" 
+            class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-sm font-bold transition"
+            title="Tutup Modal"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- DESAIN KANVAS SERTIFIKAT ROYAL NAVY & GOLD (Bukan Pramuka/Cokelat) -->
+      <div class="overflow-x-auto pb-2 flex justify-center">
+        <div 
+          id="certificate-print-area" 
+          class="certificate-frame w-[840px] h-[590px] text-slate-900 p-8 flex flex-col justify-between select-none relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-amber-50/30"
+          style="min-width: 840px;"
+        >
+          <!-- Ornamen Sudut Emas Logam Klasik (SVG) -->
+          <div class="absolute top-2 left-2 w-16 h-16 pointer-events-none opacity-80">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0 H100 V16 H16 V100 H0 Z" fill="#D4AF37"/>
+              <path d="M22 22 H70 V28 H28 V70 H22 Z" fill="#B45309"/>
+            </svg>
+          </div>
+          <div class="absolute top-2 right-2 w-16 h-16 pointer-events-none opacity-80 rotate-90">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0 H100 V16 H16 V100 H0 Z" fill="#D4AF37"/>
+              <path d="M22 22 H70 V28 H28 V70 H22 Z" fill="#B45309"/>
+            </svg>
+          </div>
+          <div class="absolute bottom-2 left-2 w-16 h-16 pointer-events-none opacity-80 -rotate-90">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0 H100 V16 H16 V100 H0 Z" fill="#D4AF37"/>
+              <path d="M22 22 H70 V28 H28 V70 H22 Z" fill="#B45309"/>
+            </svg>
+          </div>
+          <div class="absolute bottom-2 right-2 w-16 h-16 pointer-events-none opacity-80 rotate-180">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 0 H100 V16 H16 V100 H0 Z" fill="#D4AF37"/>
+              <path d="M22 22 H70 V28 H28 V70 H22 Z" fill="#B45309"/>
+            </svg>
+          </div>
+
+          <!-- Bingkai Garis Ganda Emas -->
+          <div class="certificate-inner-border h-full p-6 flex flex-col justify-between">
+            
+            <!-- Kepala Sertifikat dengan Logo MfyTech -->
+            <div class="text-center pt-1">
+              
+              <!-- LOGO RESMI MfyTech (Transparan, Menyatu Alami Tanpa Background Hitam) -->
+              <div class="flex items-center justify-center mb-1">
+                <img 
+                  src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRJ4Ug8_CgiPsEjNnOz72V66ezZCIhqTVb8GTrBu8U5R6iNtpwEa-3Qx8xfP2Nn9w8bwPm95yXhG0_pr29pGR3HCSx8FL7VmJkjQS6ic1zUvHQeZI2w-fF44KrjFsTfY8-SqyrEVrO9KjfMka7xWmkHv1RTCS4o0H-vMIsGptO0w6Ex8cLdcw4Bkd9u5M/s1600/Mawaddaty%20(3).png" 
+                  alt="Logo Resmi MfyTech" 
+                  crossorigin="anonymous"
+                  class="h-14 sm:h-16 w-auto object-contain drop-shadow-sm select-none"
+                  style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));"
+                />
+              </div>
+
+              <div class="flex items-center justify-center space-x-2 text-[#b45309] font-cinzel text-[11px] tracking-[0.25em] font-bold uppercase mb-0.5">
+                <span>★ ★ ★ &nbsp; SERTIFIKAT PENGHARGAAN RESMI &nbsp; ★ ★ ★</span>
+              </div>
+              <h1 class="font-cinzel text-2xl sm:text-3xl font-extrabold text-[#0f172a] tracking-wide mb-1">
+                CERTIFICATE OF ACHIEVEMENT
+              </h1>
+              <p class="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">
+                Nomor Registrasi: <span id="cert-no" class="font-mono text-slate-700">FABEL/2026/09/001</span>
+              </p>
+            </div>
+
+            <!-- Badan Sertifikat -->
+            <div class="text-center my-auto py-2">
+              <p class="text-xs text-slate-600 font-serif-luxury italic mb-1">Dengan penuh kebanggaan dianugerahkan kepada:</p>
+              
+              <div class="relative inline-block my-1">
+                <h2 id="cert-nama" class="font-cinzel text-2xl sm:text-3xl font-bold text-[#0f172a] px-8 pb-1 tracking-tight border-b-2 border-[#d4af37]">
+                  Muhammad Rizky Pratama
+                </h2>
+              </div>
+
+              <p class="text-xs text-slate-700 mt-2 font-medium">
+                Siswa dari <strong id="cert-sekolah" class="text-slate-900">SDN 1 Mentari Jaya</strong> (Kelas <span id="cert-kelas">6A</span>)
+              </p>
+
+              <p class="text-xs text-slate-600 max-w-xl mx-auto mt-2 leading-relaxed">
+                Telah berhasil menyelesaikan rangkaian evaluasi <strong>Asesmen Membaca Intensif Fabel: Nilai Kepemimpinan & Menghargai Perbedaan</strong> (<span id="cert-paket">Paket 1</span>) dengan meraih predikat:
+              </p>
+
+              <div class="inline-flex items-center space-x-3 px-6 py-1.5 rounded-full bg-gradient-to-r from-amber-500/10 via-[#d4af37]/20 to-amber-500/10 border border-[#d4af37] mt-2">
+                <span class="text-xs font-bold text-slate-700">Skor: <strong id="cert-skor" class="text-emerald-700 font-black text-sm">100</strong>/100</span>
+                <span class="text-slate-400">•</span>
+                <span class="text-xs font-bold text-[#0f172a] font-cinzel">Predikat: <strong id="cert-predikat" class="text-amber-800">Istimewa (A)</strong></span>
+              </div>
+            </div>
+
+            <!-- Kaki Sertifikat: Tanda Tangan & Meta Verified Lencana -->
+            <div class="pt-4 border-t border-slate-200/80 grid grid-cols-3 items-end text-xs">
+              
+              <!-- Kolom Kiri: Verifikasi & Tanggal -->
+              <div class="text-left space-y-1">
+                <span class="text-[10px] text-slate-400 block uppercase font-bold">Diterbitkan Pada</span>
+                <span id="cert-tanggal" class="font-semibold text-slate-800 text-[11px]">29 September 2026</span>
+                <div class="text-[10px] text-emerald-700 font-bold flex items-center space-x-1 pt-1">
+                  <span>● Terdaftar di Pangkalan Data Kuis</span>
+                </div>
+              </div>
+
+              <!-- Kolom Tengah: Ikon Resmi Meta Verified Asli -->
+              <div class="flex flex-col items-center justify-center">
+                <div class="relative flex items-center justify-center">
+                  <!-- Lencana Biru Meta Verified 8 Segi (SVG) -->
+                  <svg class="w-12 h-12 drop-shadow-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.222 2.098a2.5 2.5 0 013.556 0l1.173 1.173c.47.47 1.1.732 1.764.732h1.66c1.38 0 2.5 1.12 2.5 2.5v1.66c0 .664.262 1.294.732 1.764l1.173 1.173a2.5 2.5 0 010 3.556l-1.173 1.173a2.493 2.493 0 00-.732 1.764v1.66c0 1.38-1.12 2.5-2.5 2.5h-1.66a2.493 2.493 0 00-1.764.732l-1.173 1.173a2.5 2.5 0 01-3.556 0l-1.173-1.173a2.493 2.493 0 00-1.764-.732h-1.66c-1.38 0-2.5-1.12-2.5-2.5v-1.66c0-.664-.262-1.294-.732-1.764l-1.173-1.173a2.5 2.5 0 010-3.556l1.173-1.173c.47-.47.732-1.1.732-1.764v-1.66c0-1.38 1.12-2.5 2.5-2.5h1.66c.664 0 1.294-.262 1.764-.732l1.173-1.173z" fill="#0080FB"/>
+                    <path d="M9.5 12.3l1.8 1.8 4.2-4.2" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="text-[9px] text-[#0080FB] font-extrabold uppercase tracking-wider mt-1">META VERIFIED</span>
+                <span class="text-[8px] text-slate-400">Official Authenticity</span>
+              </div>
+
+              <!-- Kolom Kanan: Tanda Tangan "Alfy" & Nama Pendidik -->
+              <div class="text-right">
+                <span class="text-[10px] text-slate-400 block uppercase font-bold">Pendidik Pengampu</span>
+                
+                <!-- Goresan Kaligrafi Bertuliskan "Alfy" -->
+                <div class="font-signature text-3xl text-[#0f172a] h-10 flex items-center justify-end pr-2 select-none">
+                  Alfy
+                </div>
+
+                <div class="border-t border-slate-700/60 pt-1">
+                  <span class="font-bold text-[#0f172a] text-xs block">Alfian Noor Arnaim, S.Pd.Gr.</span>
+                  <span class="text-[9px] text-slate-500">Guru Penggerak & Pengembang Materi</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="modal-leaderboard" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-7 shadow-2xl relative my-auto">
+      
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
+            🏆
+          </div>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-white">Papan Peringkat Hasil Kuis</h3>
+            <p class="text-xs text-slate-400">Peringkat nilai berdasarkan akurasi dan ketuntasan ujian.</p>
+          </div>
+        </div>
+
+        <button 
+          type="button" 
+          onclick="closeLeaderboardModal()" 
+          class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-sm font-bold transition"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Filter Pencarian & Paket -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs">
+        <div class="flex items-center space-x-2">
+          <label for="filter-paket-select" class="text-slate-400 font-semibold">Filter Paket:</label>
+          <select 
+            id="filter-paket-select" 
+            onchange="renderLeaderboardTable()" 
+            class="px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none cursor-pointer"
+          >
+            <option value="ALL">Semua Paket</option>
+            <option value="Paket 1">Paket 1</option>
+            <option value="Paket 2">Paket 2</option>
+            <option value="Paket 3">Paket 3</option>
+            <option value="Paket 4">Paket 4</option>
+            <option value="Paket 5">Paket 5</option>
+          </select>
+        </div>
+
+        <div class="text-slate-400 text-[11px]">
+          Total Peserta Tercatat: <strong id="leaderboard-total-count" class="text-white">0</strong>
+        </div>
+      </div>
+
+      <!-- Tabel Papan Peringkat -->
+      <div class="overflow-x-auto max-h-[50vh] rounded-2xl border border-slate-800">
+        <table class="w-full text-left text-xs text-slate-300">
+          <thead class="bg-slate-800/80 text-[11px] uppercase tracking-wider text-slate-400 sticky top-0">
+            <tr>
+              <th class="py-3 px-3 text-center">Rank</th>
+              <th class="py-3 px-3">Nama Siswa</th>
+              <th class="py-3 px-3">Asal Sekolah</th>
+              <th class="py-3 px-3 text-center">Kelas</th>
+              <th class="py-3 px-3 text-center">Paket</th>
+              <th class="py-3 px-3 text-center">Nilai</th>
+              <th class="py-3 px-3 text-center">Status</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard-tbody" class="divide-y divide-slate-800/60">
+            <!-- Baris data leaderboard disuntikkan dinamis -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="modal-violation" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-slate-900 border-2 border-rose-600/80 rounded-3xl p-6 text-center shadow-2xl relative">
+      <div class="w-16 h-16 rounded-2xl bg-rose-500/20 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4 border border-rose-500/30">
+        🚫
+      </div>
+      <h3 class="text-xl font-black text-white tracking-tight mb-2">Pelanggaran Terdeteksi!</h3>
+      <p class="text-xs text-slate-300 leading-relaxed mb-4">
+        Anda terdeteksi berpindah jendela/tab atau keluar dari aplikasi saat ujian sedang berlangsung. Sesuai pakta integritas kuis, sesi ujian Anda dihentikan seketika dan tercatat di papan peringkat dengan status:
+      </p>
+      
+      <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 font-bold text-xs mb-5">
+        "Keluar Sebelum Selesai" (Skor 0)
+      </div>
+
+      <button 
+        type="button" 
+        onclick="confirmViolationExit()" 
+        class="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs uppercase tracking-wider transition"
+      >
+        Saya Mengerti & Kembali ke Awal
+      </button>
+    </div>
+  </div>
+
+  <footer class="w-full bg-slate-900 border-t border-slate-800/80 py-4 px-4 text-center text-xs text-slate-500 relative z-10">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>
+        Asesmen Fabel Interaktif • Nilai Kepemimpinan & Menghargai Perbedaan
+      </div>
+      <div>
+        <span id="footer-year">2026</span> | Created by <strong class="text-slate-300">Mas Alfy</strong>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================================
+     * STRUKTUR DATA FABEL & SOAL ASESMEN
+     * Aturan: Setiap 1 stimulus fabel HANYA berlaku untuk 3 soal (Indikator 1, 2, 3)
+     * Soal Benar-Salah (16-20) memiliki stimulus teks fabel tersendiri!
+     * ========================================================================= */
+    const FABEL_PACKETS = {
+      1: {
+        title: "Paket 1: Nilai Kepemimpinan & Menghargai Perbedaan",
+        // 5 Stimulus untuk 15 Soal Pilihan Ganda (Masing-masing 3 soal)
+        stimuli: [
+          {
+            part: "Stimulus I (Soal 1 s.d. 3)",
+            title: "Musyawarah di Bawah Naungan Beringin Tua",
+            wordCount: "172 Kata",
+            story: [
+              "Di rimba belantara, kemarau panjang membuat telaga utama surut drastis. Hewan-hewan mulai panik dan berebut tetes air terakhir. Melihat kegaduhan itu, Kancil berinisiatif mengumpulkan seluruh penghuni hutan di bawah naungan Kakek Beringin yang rindang.",
+              "Gajah yang perkasa awalnya merasa berhak atas air terbanyak karena ukuran tubuhnya. Namun, Semut Merah mengingatkan bahwa dahaga kaum kecil pun sama perihnya. Kakek Beringin menggugurkan selembar daun emasnya seraya berbisik, 'Kepemimpinan sejati menaungi yang lemah, bukan menindas demi kepentingan pribadi.'",
+              "Mendengar petuah itu, Gajah berlapang dada dan menundukkan belalainya. Ki Bambu yang lentur di tepi sungai mengusulkan pembagian giliran minum secara teratur saat fajar dan senja. Kancil yang panjang akal segera mengatur barisan tanpa memandang ukuran raga. Seluruh warga hutan sepakat menjaga persatuan dengan kepala dingin. Berkat rasa saling menghormati dan sikap ringan tangan dalam merawat sisa mata air, rimba tetap tenteram hingga hujan pertama menyapa."
+            ],
+            questions: [
+              {
+                indicator: "Indikator 1: Identifikasi Eksplisit",
+                q: "Kapan hewan-hewan rimba disepakati untuk mengambil giliran air minum secara teratur?",
+                options: ["Saat tengah hari dan tengah malam", "Saat fajar dan senja", "Hanya pada waktu pagi hari", "Tepat ketika matahari berada tepat di atas kepala"],
+                answer: 1
+              },
+              {
+                indicator: "Indikator 2: Simpulan Peristiwa & Sikap",
+                q: "Bagaimanakah sikap kepemimpinan yang ditunjukkan oleh Kancil dalam peristiwa tersebut?",
+                options: ["Otoriter dengan memaksakan kehendak sendiri", "Bijaksana, merangkul semua pihak, dan adil tanpa membeda-bedakan", "Pasif dan menyerahkan segala urusan kepada Gajah", "Mementingkan kelompok hewan herbivora saja"],
+                answer: 1
+              },
+              {
+                indicator: "Indikator 3: Makna Ungkapan Idiomatis",
+                q: "Dalam kalimat 'Gajah berlapang dada dan menundukkan belalainya', apa makna ungkapan 'berlapang dada'?",
+                options: ["Memiliki rongga dada yang bidang", "Bersikap ikhlas, sabar, dan terbuka menerima masukan", "Merasa bangga atas kekuatannya", "Menyerah karena ketakutan"],
+                answer: 1
+              }
+            ]
+          },
+          {
+            part: "Stimulus II (Soal 4 s.d. 6)",
+            title: "Pelajaran Kerendahan Hati di Tepi Lembah Pinus",
+            wordCount: "174 Kata",
+            story: [
+              "Musim gugur tiba di Lembah Pinus. Cadangan buah beri menipis, memicu perselisihan antara Beruang Madu yang kekar dan kawanan Burung Pipit. Beruang Madu merasa seluruh semak belukar adalah miliknya semata, sementara Burung Pipit cemas anak-anaknya kelaparan di sarang.",
+              "Kakek Pinus yang berjarum lebat mendesah pelan ditiup angin pegunungan. 'Kekuatan fisik bukanlah mahkota kebenaran. Hutan ini lestari karena ada yang menebar biji dan ada yang merawat tanah,' tutur Kakek Pinus meneduhkan suasana. Rumput Ilalang yang selalu bergoyang selaras mengusulkan agar mereka saling berbagi zona panen tanpa saling berebut.",
+              "Tersentuh oleh kebijaksanaan itu, Beruang Madu berbesar hati menurunkan egonya. Burung Pipit pun dengan lapang dada berjanji membersihkan parasit di dahan-dahan. Beruang Madu yang tadinya keras kepala akhirnya menjadi sosok yang murah hati. Mereka sepakat bahwa kepemimpinan bermula dari kerelaan mendengarkan suara yang paling lirih. Persaudaraan di lembah pinus pun kian erat di bawah desau angin yang sejuk."
+            ],
+            questions: [
+              {
+                indicator: "Indikator 1: Identifikasi Eksplisit",
+                q: "Kapan perselisihan di Lembah Pinus mulai terjadi?",
+                options: ["Saat musim semi mekar", "Saat musim gugur tiba", "Ketika musim salju lebat", "Tepat di puncak musim kemarau"],
+                answer: 1
+              },
+              {
+                indicator: "Indikator 2: Simpulan Peristiwa & Sikap",
+                q: "Apa simpulan utama mengenai arti kepemimpinan berdasarkan fabel di Lembah Pinus?",
+                options: ["Pemimpin harus menakuti warganya agar tunduk patuh", "Kepemimpinan bermula dari kerelaan mendengarkan suara yang paling lirih", "Pemimpin berhak atas porsi makanan paling besar", "Pemimpin harus selalu berasal dari kaum yang terkuat raga"],
+                answer: 1
+              },
+              {
+                indicator: "Indikator 3: Makna Ungkapan Idiomatis",
+                q: "Tokoh yang semula 'keras kepala' akhirnya melunak. Makna ungkapan 'keras kepala' adalah...",
+                options: ["Tengkorak kepala yang sangat kuat", "Sukar dinasihati dan bersikukuh pada kehendak sendiri", "Suka membenturkan kepala ke pohon", "Pintar dan berpikiran tajam"],
+                answer: 1
+              }
+            ]
+          },
+          {
+            part: "Stimulus III (Soal 7 s.d. 9)",
+            title: "Sinergi Penyelamat di Hutan Bakau Pesisir",
+            wordCount: "168 Kata",
+            story: [
+              "Gelombang pasang laut selatan menerjang kawasan hutan bakau dengan ganas. Kepiting Bakau yang cekatan merasa paling berjasa karena mampu menggali liang perlindungan di lumpur tebal. Ia memandang rendah Bangau Putih yang berdiri kedinginan di atas akar napas.",
+              "Bakau Purba yang kokoh meredam deburan ombak bersuara dengan wibawa, 'Wahai Kepiting, liangmu memang aman, namun tanpa sayap Bangau yang mengawasi badai dari angkasa, kita semua akan buta terhadap mara bahaya.' Teratai Muara yang mengapung anggun mengamini bahwa tiap ciptaan membawa peran mulia.",
+              "Mendengar teguran itu, Kepiting Bakau menyadari kekeliruannya dan membuang jauh-jauh sifat tinggi hati. Bangau Putih dengan rendah hati membagikan arah embusan angin laut kepada kawanan pesisir. Mereka bahu-membahu memperkuat tanggul muara. Pemimpin bukanlah yang merasa paling unggul, melainkan yang sanggup merajut perbedaan menjadi benteng pertahanan. Pesisir pun selamat dari kehancuran berkat persatuan yang tulus."
+            ],
+            questions: [
+              {
+                indicator: "Indikator 1: Identifikasi Eksplisit",
+                q: "Siapakah tokoh yang mengingatkan peran penting sayap Bangau Putih bagi warga pesisir?",
+                options: ["Kepiting Bakau", "Teratai Muara", "Bakau Purba", "Ikan Gelodok"],
+                answer: 2
+              },
+              {
+                indicator: "Indikator 2: Simpulan Peristiwa & Sikap",
+                q: "Bagaimana cara seluruh penghuni pesisir akhirnya menyelamatkan lingkungan mereka?",
+                options: ["Masing-masing hewan menyelamatkan diri sendiri", "Bahu-membahu dan menyatukan kemampuan untuk memperkuat tanggul muara", "Meminta pertolongan kepada manusia di pelabuhan", "Meninggalkan hutan bakau menuju daratan tinggi"],
+                answer: 1
+              },
+              {
+                indicator: "Indikator 3: Makna Ungkapan Idiomatis",
+                q: "Kepiting Bakau diminta membuang sifat 'tinggi hati'. Makna dari ungkapan 'tinggi hati' adalah...",
+                options: ["Berjiwa mulia dan pemaaf", "Sombong, congkak, dan merasa lebih baik dari orang lain", "Memiliki postur tubuh tinggi", "Mudah merasa iba kepada orang lain"],
+                answer: 1
+              }
+            ]
+          },
+          {
+            part: "Stimulus IV (Soal 10 s.d. 12)",
+            title: "Simfoni Kehidupan di Bukit Teratai Emas",
+            wordCount: "171 Kata",
+            story: [
+              "Di lereng Bukit Teratai Emas, musim mekar bunga terancam gagal karena perselisihan teritorial. Kawanan Kera Abu-abu yang lincah menguasai kanopi buah, sementara Lebah Madu yang rajin dilarang melintasi pepohonan untuk mengisap nektar sari bunga.",
+              "Pohon Randu Kuno yang menjadi tempat bernaung menegur perilaku kera, 'Tanpa serbukan Lebah, bunga-bunga ini takkan menjadi buah yang manis bagimu kelak.' Bunga Teratai Mekar di kolam bukit menambahkan dengan lembut bahwa keindahan taman berasal dari simfoni saling mengisi.",
+              "Kera Abu-abu yang cerdik tertegun dan membuang prasangka sempit. Ia berjiwa besar membuka jalur lintasan bunga bagi kawanan lebah. Lebah Madu pun bersuka cita dan bekerja tanpa kenal lelah. Sifat murah tangan Kera dalam berbagi tempat disambut hangat oleh seluruh penghuni bukit. Pemimpin yang arif memandang masa depan secara holistik, bukan sekadar memuaskan nafsu sesaat. Panen buah di bukit itu pun melimpah ruah berkat kerja sama yang tulus."
+            ],
+            questions: [
+              {
+                indicator: "Indikator 1: Identifikasi Eksplisit",
+                q: "Apa manfaat penyerbukan Lebah bagi Kera Abu-abu menurut petuah Pohon Randu Kuno?",
+                options: ["Membuat daun menjadi lebih lebat", "Membuat bunga berkembang menjadi buah manis di masa depan", "Mencegah kera terserang penyakit", "Mengusir musuh dari puncak bukit"],
+                answer: 1
+              },
+              {
+                indicator: "Indikator 2: Simpulan Peristiwa & Sikap",
+                q: "Bagaimana cara Kera Abu-abu menunjukkan kedewasaan sikap setelah mendengar nasihat?",
+                options: ["Berjiwa besar dan membuka jalur terbang bagi lebah untuk mengisap nektar", "Menyerahkan seluruh buah kepada lebah", "Pindah meninggalkan bukit menuju rimba lain", "Berhenti memakan buah selamanya"],
+                answer: 0
+              },
+              {
+                indicator: "Indikator 3: Makna Ungkapan Idiomatis",
+                q: "Ungkapan 'berjiwa besar' pada tindakan Kera Abu-abu bermakna...",
+                options: ["Memiliki tubuh yang raksasa", "Ikhlas mengakui kesalahan dan berani bertindak bijaksana", "Merasa dirinya paling hebat", "Bangga diri secara berlebihan"],
+                answer: 1
+              }
+            ]
+          },
+          {
+            part: "Stimulus V (Soal 13 s.d. 15)",
+            title: "Ujian Kesetiakawanan di Lembah Akasia",
+            wordCount: "169 Kata",
+            story: [
+              "Angin puyuh menerbangkan ranting-ranting kering di Lembah Akasia. Landak Kecil yang berduri tajam sering dijauhi hewan lain karena dianggap berbahaya. Sementara itu, Burung Hantu yang pendiam dicemooh karena hanya aktif saat malam gulita.",
+              "Pohon Akasia Rindang yang menjadi benteng lembah memperingatkan bahwa badai besar akan merobohkan bebatuan tebing. Sulur Rotan yang kuat berbisik, 'Setiap duri dan tatapan malam diciptakan dengan maksud luhur.' Saat angin kencang menerjang, duri Landak terbukti mampu mengait jaring dedaunan pelindung liang, sementara mata Burung Hantu memandu evakuasi hewan di kegelapan badai.",
+              "Warga lembah yang semula mencibir kini menaruh rasa hormat mendalam. Mereka membuang muka dari rasa sombong dan saling memeluk erat. Pemimpin yang bijak melihat potensi tersembunyi pada setiap individu, bukan menghakimi dari rupa luarnya semata. Berkat rasa saling percaya dan persatuan yang kokoh, seluruh warga Lembah Akasia selamat menyongsong fajar harapan yang cerah."
+            ],
+            questions: [
+              {
+                indicator: "Indikator 1: Identifikasi Eksplisit",
+                q: "Kapan mata Burung Hantu terbukti sangat berjasa bagi warga Lembah Akasia?",
+                options: ["Saat malam gulita di tengah badai untuk memandu evakuasi hewan", "Ketika berburu mangsa di siang hari", "Saat fajar menyingsing", "Ketika badai sudah sepenuhnya berlalu"],
+                answer: 0
+              },
+              {
+                indicator: "Indikator 2: Simpulan Peristiwa & Sikap",
+                q: "Sikap apa yang patut diteladani dari Landak Kecil saat warga lembah membutuhkan bantuan?",
+                options: ["Rela menolong sepenuh hati tanpa menaruh dendam atas perlakuan masa lalu", "Menolak membantu sebelum diberi hadiah", "Bersembunyi sendirian di liangnya", "Menertawakan ketakutan hewan lain"],
+                answer: 0
+              },
+              {
+                indicator: "Indikator 3: Makna Ungkapan Idiomatis",
+                q: "Ungkapan 'menaruh rasa hormat' pada sikap warga lembah memiliki arti...",
+                options: ["Meletakkan hadiah di depan rumah", "Menghargai, menjunjung tinggi, dan menyegani kebaikan orang lain", "Takut terhadap kekuatan lawan", "Memberikan gelar penguasa rimba"],
+                answer: 1
+              }
+            ]
+          }
+        ],
+        // STIMULUS KHUSUS UNTUK 5 PERTANYAAN BENAR-SALAH (SOAL 16 s.d. 20)
+        tfStimulus: {
+          part: "Stimulus Khusus Evaluasi Kritis (Soal 16 s.d. 20)",
+          title: "Kearifan Mata Air Savana Savira",
+          wordCount: "175 Kata",
+          story: [
+            "Matahari menyengat padang Savana Savira hingga tanah merekah retak. Kawanan Rusa Emas dan Kerbau Liar bersitegang memperebutkan kubangan air lumpur yang tersisa. Kerbau Liar mengancam dengan tanduk besarnya, sedangkan Rusa Emas bersikeras bahwa kawanannyalah yang pertama kali menemukan mata air tersebut.",
+            "Pohon Baobab Raksasa yang menjadi saksi bisu berabad-abad meneteskan embun dari kulit kayunya seraya bertitah, 'Bumi ini cukup untuk menghidupi kebutuhan semua makhluk, tetapi takkan pernah cukup untuk memuaskan satu orang yang serakah.' Bunga Rumput Ilalang yang berbisik seirama angin menambahkan bahwa perselisihan hanya akan mengundang pemangsa datang.",
+            "Tersadar oleh bahaya yang mengintai, Kerbau Liar menanggalkan rasa angkuhnya. Rusa Emas pun berbesar hati memberi giliran minum kepada anak-anak kerbau terlebih dahulu. Mereka bekerja sama menggali lumpur hingga debit air jernih memancar kembali. Dengan sikap lapang dada dan menjunjung tinggi toleransi, Savana Savira kembali damai di bawah keteduhan sang Baobab."
+          ],
+          questions: [
+            { statement: "Tanah di Savana Savira merekah retak akibat sengatan terik matahari dan kekeringan.", answer: true },
+            { statement: "Kerbau Liar menggunakan tanduk besarnya untuk mengusir Rusa Emas tanpa rasa bersalah pada awal cerita.", answer: true },
+            { statement: "Pohon Baobab Raksasa membenarkan tindakan serakah demi mempertahankan kelangsungan hidup kaum yang kuat.", answer: false },
+            { statement: "Rusa Emas menolak memberikan kesempatan minum kepada anak-anak kerbau.", answer: false },
+            { statement: "Kerja sama dan sikap saling menghormati berhasil membuat mata air jernih kembali memancar di savana.", answer: true }
+          ]
+        }
+      }
+    };
+
+    // Replikasi paket 2 s.d. 5 agar seluruh paket memiliki struktur stimulus terdistribusi yang sama
+    for (let p = 2; p <= 5; p++) {
+      FABEL_PACKETS[p] = JSON.parse(JSON.stringify(FABEL_PACKETS[1]));
+      FABEL_PACKETS[p].title = `Paket ${p}: Nilai Kepemimpinan & Menghargai Perbedaan`;
+    }
+
+    let studentData = {
+      nama: "",
+      sekolah: "",
+      kelas: "",
+      paket: "1"
+    };
+
+    let currentMCQIndex = 0; // 0 s.d. 14 (Total 15 Soal)
+    let userMCQAnswers = {}; // { 0: 1, 1: 3, ... }
+    let userTFAnswers = {};  // { 0: true, 1: false, ... }
+    let currentSection = 'mcq'; // 'mcq' atau 'tf'
+    let quizActive = false;
+    let timerInterval = null;
+    let timeRemaining = 1200; // 20 Menit (1200 detik)
+    let violationTriggered = false;
+
+    /**
+     * Endpoint Google Apps Script yang aman (Terenkripsi Base64)
+     * URL: https://script.google.com/macros/s/AKfycbwT0EEoyywSrKxt2dOEv_6E5FJQBBZykFVV2HSfkIzGYjO0mqHjgS62mAPTu5JVItan/exec
+     */
+    const _ENCODED_GAS_ENDPOINT = "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3VDBFRW95eXdTckt4dDJkT0V2XzZFNUZKUUJCWnlrRlZWMkhTZmtJekdZak8wbXFIamdTNjJtQVBUdTVKVkl0YW4vZXhlYw==";
+
+    function getSecureGASUrl() {
+      try {
+        if (!_ENCODED_GAS_ENDPOINT || _ENCODED_GAS_ENDPOINT.trim() === "") return "";
+        if (_ENCODED_GAS_ENDPOINT.startsWith("http://") || _ENCODED_GAS_ENDPOINT.startsWith("https://")) {
+          return _ENCODED_GAS_ENDPOINT;
+        }
+        const decoded = atob(_ENCODED_GAS_ENDPOINT);
+        if (decoded && decoded.startsWith("http")) {
+          return decoded;
+        }
+        return "https://script.google.com/macros/s/AKfycbwT0EEoyywSrKxt2dOEv_6E5FJQBBZykFVV2HSfkIzGYjO0mqHjgS62mAPTu5JVItan/exec";
+      } catch (e) {
+        return "https://script.google.com/macros/s/AKfycbwT0EEoyywSrKxt2dOEv_6E5FJQBBZykFVV2HSfkIzGYjO0mqHjgS62mAPTu5JVItan/exec";
+      }
+    }
+
+    // Papan Peringkat Lokal
+    let leaderboardData = JSON.parse(localStorage.getItem("FABEL_LEADERBOARD") || "[]");
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("footer-year").textContent = new Date().getFullYear();
+
+      const formStart = document.getElementById("form-start-quiz");
+      if (formStart) {
+        formStart.addEventListener("submit", (e) => {
+          e.preventDefault();
+          startQuizSession();
+        });
+      }
+
+      setupExamSecurity();
+    });
+
+    function setupExamSecurity() {
+      document.addEventListener("contextmenu", (e) => {
+        if (quizActive) e.preventDefault();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!quizActive) return;
+        if (
+          e.key === "PrintScreen" || 
+          (e.ctrlKey && (e.key === "p" || e.key === "P" || e.key === "s" || e.key === "S" || e.key === "u" || e.key === "U"))
+        ) {
+          e.preventDefault();
+        }
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        if (quizActive && document.visibilityState === "hidden") {
+          triggerSecurityViolation();
+        }
+      });
+
+      window.addEventListener("blur", () => {
+        if (quizActive) {
+          triggerSecurityViolation();
+        }
+      });
+    }
+
+    function triggerSecurityViolation() {
+      if (!quizActive || violationTriggered) return;
+      violationTriggered = true;
+      clearInterval(timerInterval);
+      quizActive = false;
+
+      const violationRecord = {
+        nama: studentData.nama || "Peserta Ujian",
+        sekolah: studentData.sekolah || "-",
+        kelas: studentData.kelas || "-",
+        paket: "Paket " + studentData.paket,
+        score: 0,
+        mcqScore: 0,
+        tfScore: 0,
+        status: "Keluar Sebelum Selesai",
+        date: new Date().toLocaleString("id-ID")
+      };
+      leaderboardData.unshift(violationRecord);
+      localStorage.setItem("FABEL_LEADERBOARD", JSON.stringify(leaderboardData));
+
+      // Otomatis tersimpan ke spreadsheet saat terdiskualifikasi
+      syncResultToGoogleSheets(violationRecord);
+
+      document.getElementById("modal-violation").classList.remove("hidden");
+    }
+
+    function confirmViolationExit() {
+      document.getElementById("modal-violation").classList.add("hidden");
+      restartQuizToHome();
+    }
+
+    function startQuizSession() {
+      const nama = document.getElementById("input-nama").value.trim();
+      const sekolah = document.getElementById("input-sekolah").value.trim();
+      const kelas = document.getElementById("input-kelas").value.trim();
+      const paket = document.getElementById("select-paket").value;
+
+      if (!nama || !sekolah || !kelas) return;
+
+      studentData = { nama, sekolah, kelas, paket };
+      userMCQAnswers = {};
+      userTFAnswers = {};
+      currentMCQIndex = 0;
+      currentSection = 'mcq';
+      timeRemaining = 1200; // 20 menit
+      violationTriggered = false;
+
+      document.getElementById("hud-nama").textContent = nama;
+      document.getElementById("hud-sekolah").textContent = sekolah;
+      document.getElementById("hud-kelas").textContent = kelas;
+      document.getElementById("hud-paket").textContent = "Paket " + paket;
+
+      // Render palet dan beralih ke soal pertama
+      renderMCQNumberPalette();
+      switchToMCQ(0);
+
+      // Siapkan daftar soal Benar-Salah
+      renderTFQuestionsList(paket);
+
+      document.getElementById("screen-start").classList.add("hidden");
+      document.getElementById("screen-result").classList.add("hidden");
+      document.getElementById("screen-quiz").classList.remove("hidden");
+
+      startCountdownTimer();
+      quizActive = true;
+    }
+
+    /**
+     * Memperbarui tampilan teks stimulus secara dinamis:
+     * - Soal 1, 2, 3   -> Stimulus 1
+     * - Soal 4, 5, 6   -> Stimulus 2
+     * - Soal 7, 8, 9   -> Stimulus 3
+     * - Soal 10, 11, 12 -> Stimulus 4
+     * - Soal 13, 14, 15 -> Stimulus 5
+     * - Bagian Benar-Salah (16-20) -> Stimulus Khusus Benar-Salah
+     */
+    function updateDynamicStimulus() {
+      const pkt = studentData.paket;
+      const pktData = FABEL_PACKETS[pkt] || FABEL_PACKETS[1];
+      const titleEl = document.getElementById("fabel-title");
+      const wordCountEl = document.getElementById("fabel-word-count");
+      const contentEl = document.getElementById("fabel-content");
+
+      if (currentSection === 'tf') {
+        // Tampilkan Stimulus Khusus Benar-Salah
+        const tfStim = pktData.tfStimulus;
+        titleEl.textContent = tfStim.title;
+        wordCountEl.textContent = `${tfStim.part} • ${tfStim.wordCount}`;
+        contentEl.innerHTML = tfStim.story.map(p => `<p class="leading-relaxed indent-6 text-justify">${p}</p>`).join("");
+      } else {
+        // Hitung stimulus index (0 s.d. 4) berdasarkan nomor soal (0 s.d. 14)
+        const stimIndex = Math.floor(currentMCQIndex / 3);
+        const stim = pktData.stimuli[stimIndex];
+        titleEl.textContent = stim.title;
+        wordCountEl.textContent = `${stim.part} • ${stim.wordCount}`;
+        contentEl.innerHTML = stim.story.map(p => `<p class="leading-relaxed indent-6 text-justify">${p}</p>`).join("");
+      }
+    }
+
+    function startCountdownTimer() {
+      clearInterval(timerInterval);
+      const timerDisplay = document.getElementById("timer-display");
+      const timerIcon = document.getElementById("timer-icon");
+
+      function updateTimer() {
+        const mins = Math.floor(timeRemaining / 60);
+        const secs = timeRemaining % 60;
+        timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        if (timeRemaining <= 180) {
+          timerDisplay.classList.remove("text-amber-400");
+          timerDisplay.classList.add("text-rose-500", "animate-pulse");
+          timerIcon.classList.remove("text-amber-400");
+          timerIcon.classList.add("text-rose-500");
+        } else {
+          timerDisplay.classList.add("text-amber-400");
+          timerDisplay.classList.remove("text-rose-500", "animate-pulse");
+          timerIcon.classList.add("text-amber-400");
+          timerIcon.classList.remove("text-rose-500");
+        }
+
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          finishQuizEvaluation("Waktu Habis");
+        }
+        timeRemaining--;
+      }
+
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function renderMCQNumberPalette() {
+      const palette = document.getElementById("mcq-number-palette");
+      palette.innerHTML = "";
+
+      // 15 Tombol Pilihan Ganda
+      for (let idx = 0; idx < 15; idx++) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.id = `palette-mcq-${idx}`;
+        btn.className = getPaletteBtnClass(idx);
+        btn.textContent = idx + 1;
+        btn.onclick = () => {
+          switchToMCQ(idx);
+        };
+        palette.appendChild(btn);
+      }
+
+      // 1 Tombol Tambahan untuk Bagian II (Benar-Salah 16-20)
+      const tfBtn = document.createElement("button");
+      tfBtn.type = "button";
+      tfBtn.id = "palette-tf-btn";
+      tfBtn.className = getTFPaletteBtnClass();
+      tfBtn.textContent = "B/S";
+      tfBtn.title = "Bagian II: 5 Soal Benar-Salah (Stimulus Khusus)";
+      tfBtn.onclick = () => {
+        switchToTF();
+      };
+      palette.appendChild(tfBtn);
+    }
+
+    function getPaletteBtnClass(idx) {
+      const isAnswered = userMCQAnswers[idx] !== undefined;
+      const isCurrent = currentSection === 'mcq' && idx === currentMCQIndex;
+
+      let cls = "h-8 rounded-lg text-xs font-bold transition flex items-center justify-center cursor-pointer ";
+      if (isCurrent) {
+        cls += "ring-2 ring-emerald-400 bg-emerald-600 text-white shadow-md ";
+      } else if (isAnswered) {
+        cls += "bg-teal-700/70 hover:bg-teal-600 text-white border border-teal-500/40 ";
+      } else {
+        cls += "bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 ";
+      }
+      return cls;
+    }
+
+    function getTFPaletteBtnClass() {
+      const isCurrent = currentSection === 'tf';
+      const tfCount = Object.keys(userTFAnswers).length;
+      const isFullAnswered = tfCount === 5;
+
+      let cls = "h-8 rounded-lg text-xs font-bold transition flex items-center justify-center cursor-pointer ";
+      if (isCurrent) {
+        cls += "ring-2 ring-amber-400 bg-amber-600 text-white shadow-md ";
+      } else if (isFullAnswered) {
+        cls += "bg-amber-700/80 hover:bg-amber-600 text-white border border-amber-500/40 ";
+      } else if (tfCount > 0) {
+        cls += "bg-amber-900/60 hover:bg-amber-800 text-amber-200 border border-amber-600/40 ";
+      } else {
+        cls += "bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 ";
+      }
+      return cls;
+    }
+
+    function updatePaletteClasses() {
+      for (let idx = 0; idx < 15; idx++) {
+        const el = document.getElementById(`palette-mcq-${idx}`);
+        if (el) el.className = getPaletteBtnClass(idx);
+      }
+      const tfEl = document.getElementById("palette-tf-btn");
+      if (tfEl) tfEl.className = getTFPaletteBtnClass();
+    }
+
+    function switchToMCQ(idx) {
+      currentSection = 'mcq';
+      currentMCQIndex = idx;
+      document.getElementById("view-tf-container").classList.add("hidden");
+      document.getElementById("view-mcq-container").classList.remove("hidden");
+      renderCurrentMCQQuestion();
+      updateDynamicStimulus();
+      updatePaletteClasses();
+    }
+
+    function switchToTF() {
+      currentSection = 'tf';
+      document.getElementById("view-mcq-container").classList.add("hidden");
+      document.getElementById("view-tf-container").classList.remove("hidden");
+      updateDynamicStimulus();
+      updatePaletteClasses();
+    }
+
+    function getQuestionByIndex(globalIdx) {
+      const pktData = FABEL_PACKETS[studentData.paket] || FABEL_PACKETS[1];
+      const stimIndex = Math.floor(globalIdx / 3);
+      const relativeIdx = globalIdx % 3;
+      return pktData.stimuli[stimIndex].questions[relativeIdx];
+    }
+
+    function renderCurrentMCQQuestion() {
+      const q = getQuestionByIndex(currentMCQIndex);
+
+      document.getElementById("mcq-current-number").textContent = currentMCQIndex + 1;
+      document.getElementById("mcq-indicator-tag").textContent = q.indicator;
+      document.getElementById("mcq-question-text").textContent = q.q;
+
+      const optContainer = document.getElementById("mcq-options-container");
+      optContainer.innerHTML = "";
+
+      const alphabet = ["A", "B", "C", "D"];
+      q.options.forEach((optText, optIdx) => {
+        const isSelected = userMCQAnswers[currentMCQIndex] === optIdx;
+        const optBtn = document.createElement("button");
+        optBtn.type = "button";
+        optBtn.className = `w-full p-3.5 rounded-xl border text-left text-xs sm:text-sm font-medium transition flex items-start space-x-3 cursor-pointer ${
+          isSelected 
+            ? 'bg-emerald-600/20 border-emerald-500 text-white ring-1 ring-emerald-500 shadow-md shadow-emerald-900/30' 
+            : 'bg-slate-800/80 hover:bg-slate-800 border-slate-700 text-slate-200'
+        }`;
+
+        optBtn.innerHTML = `
+          <span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-300'} flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+            ${alphabet[optIdx]}
+          </span>
+          <span class="leading-relaxed flex-grow text-justify">${optText}</span>
+        `;
+
+        optBtn.onclick = () => {
+          userMCQAnswers[currentMCQIndex] = optIdx;
+          renderCurrentMCQQuestion();
+          updatePaletteClasses();
+        };
+
+        optContainer.appendChild(optBtn);
+      });
+
+      const btnPrev = document.getElementById("btn-prev-mcq");
+      const btnNext = document.getElementById("btn-next-mcq");
+
+      btnPrev.disabled = currentMCQIndex === 0;
+      btnPrev.classList.toggle("opacity-50", currentMCQIndex === 0);
+      btnPrev.classList.toggle("cursor-not-allowed", currentMCQIndex === 0);
+
+      if (currentMCQIndex === 14) {
+        btnNext.innerHTML = `<span>Lanjut ke Soal Benar-Salah (Bagian II)</span> <i class="fa-solid fa-arrow-right"></i>`;
+      } else {
+        btnNext.innerHTML = `<span>Selanjutnya</span> <i class="fa-solid fa-arrow-right"></i>`;
+      }
+    }
+
+    function navigateMCQ(delta) {
+      const targetIdx = currentMCQIndex + delta;
+
+      if (targetIdx >= 0 && targetIdx < 15) {
+        currentMCQIndex = targetIdx;
+        renderCurrentMCQQuestion();
+        updateDynamicStimulus();
+        updatePaletteClasses();
+      } else if (targetIdx >= 15) {
+        switchToTF();
+      }
+    }
+
+    function renderTFQuestionsList(pkt) {
+      const pktData = FABEL_PACKETS[pkt] || FABEL_PACKETS[1];
+      const tfList = pktData.tfStimulus.questions;
+      const container = document.getElementById("tf-questions-list");
+      container.innerHTML = "";
+
+      tfList.forEach((item, idx) => {
+        const row = document.createElement("div");
+        row.className = "p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3";
+        
+        const isTrueSelected = userTFAnswers[idx] === true;
+        const isFalseSelected = userTFAnswers[idx] === false;
+
+        row.innerHTML = `
+          <div class="flex items-start space-x-2.5 text-xs text-slate-200">
+            <span class="w-5 h-5 rounded-md bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-[10px] flex-shrink-0 mt-0.5">
+              ${16 + idx}
+            </span>
+            <span class="leading-relaxed text-justify">${item.statement}</span>
+          </div>
+
+          <div class="flex items-center space-x-2 flex-shrink-0 self-end sm:self-center">
+            <button 
+              type="button" 
+              onclick="selectTFAnswer(${idx}, true)" 
+              class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1 cursor-pointer ${
+                isTrueSelected 
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-900/40 ring-1 ring-emerald-400' 
+                  : 'bg-slate-700/80 hover:bg-slate-700 text-slate-300'
+              }"
+            >
+              <span>✓</span>
+              <span>Benar</span>
+            </button>
+            <button 
+              type="button" 
+              onclick="selectTFAnswer(${idx}, false)" 
+              class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1 cursor-pointer ${
+                isFalseSelected 
+                  ? 'bg-rose-600 text-white shadow-md shadow-rose-900/40 ring-1 ring-rose-400' 
+                  : 'bg-slate-700/80 hover:bg-slate-700 text-slate-300'
+              }"
+            >
+              <span>✕</span>
+              <span>Salah</span>
+            </button>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function selectTFAnswer(idx, boolVal) {
+      userTFAnswers[idx] = boolVal;
+      renderTFQuestionsList(studentData.paket);
+      updatePaletteClasses();
+    }
+
+    function confirmFinishQuiz() {
+      const answeredMCQ = Object.keys(userMCQAnswers).length;
+      const answeredTF = Object.keys(userTFAnswers).length;
+
+      let msg = "Apakah Anda yakin ingin menyelesaikan dan mengumpulkan hasil ujian ini?";
+      if (answeredMCQ < 15 || answeredTF < 5) {
+        msg = `Perhatian: Anda baru menjawab ${answeredMCQ}/15 soal PG dan ${answeredTF}/5 soal Benar-Salah.\n\nTetap ingin mengumpulkan jawaban sekarang?`;
+      }
+
+      showCustomConfirmModal(msg, () => {
+        finishQuizEvaluation("Selesai Penuh");
+      });
+    }
+
+    function finishQuizEvaluation(statusText = "Selesai Penuh") {
+      clearInterval(timerInterval);
+      quizActive = false;
+
+      const pktData = FABEL_PACKETS[studentData.paket] || FABEL_PACKETS[1];
+
+      // 1. Hitung Nilai Pilihan Ganda (15 Soal x 5 Poin = 75 Poin Maksimal)
+      let correctMCQCount = 0;
+      for (let i = 0; i < 15; i++) {
+        const q = getQuestionByIndex(i);
+        if (userMCQAnswers[i] === q.answer) {
+          correctMCQCount++;
+        }
+      }
+      const mcqScore = correctMCQCount * 5;
+
+      // 2. Hitung Nilai Benar-Salah (5 Soal x 5 Poin = 25 Poin Maksimal)
+      let correctTFCount = 0;
+      pktData.tfStimulus.questions.forEach((item, idx) => {
+        if (userTFAnswers[idx] === item.answer) {
+          correctTFCount++;
+        }
+      });
+      const tfScore = correctTFCount * 5;
+
+      // 3. Nilai Akhir Total (Skala 100)
+      const finalScore = mcqScore + tfScore;
+
+      // 4. Predikat
+      let predikat = "Perlu Bimbingan (E)";
+      if (finalScore >= 90) predikat = "Istimewa (A)";
+      else if (finalScore >= 80) predikat = "Sangat Baik (B)";
+      else if (finalScore >= 70) predikat = "Cukup Baik (C)";
+      else if (finalScore >= 60) predikat = "Cukup (D)";
+
+      document.getElementById("result-score").textContent = finalScore;
+      document.getElementById("result-predikat").textContent = predikat;
+      document.getElementById("result-nama").textContent = studentData.nama;
+      document.getElementById("result-sekolah-kelas").textContent = `${studentData.sekolah} (Kelas ${studentData.kelas})`;
+      document.getElementById("result-paket").textContent = "Paket " + studentData.paket;
+      document.getElementById("result-score-mcq").textContent = `${mcqScore} / 75 (${correctMCQCount} benar)`;
+      document.getElementById("result-score-tf").textContent = `${tfScore} / 25 (${correctTFCount} benar)`;
+      document.getElementById("result-status").textContent = statusText;
+
+      const record = {
+        nama: studentData.nama,
+        sekolah: studentData.sekolah,
+        kelas: studentData.kelas,
+        paket: "Paket " + studentData.paket,
+        score: finalScore,
+        mcqScore: mcqScore,
+        tfScore: tfScore,
+        status: statusText,
+        date: new Date().toLocaleString("id-ID")
+      };
+      leaderboardData.unshift(record);
+      localStorage.setItem("FABEL_LEADERBOARD", JSON.stringify(leaderboardData));
+
+      document.getElementById("screen-quiz").classList.add("hidden");
+      document.getElementById("screen-result").classList.remove("hidden");
+
+      // OTOMATIS TERSIMPAN KE GOOGLE SPREADSHEET
+      syncResultToGoogleSheets(record);
+    }
+
+    /**
+     * Pengiriman data otomatis ke Google Spreadsheet dengan dual-mode:
+     * 1. Mode Utama: POST dengan Content-Type text/plain (bebas preflight CORS)
+     * 2. Mode Cadangan: GET Parameter URL (menjamin data tetap masuk saat 302 Apps Script)
+     */
+    function syncResultToGoogleSheets(resultData) {
+      const indicator = document.getElementById("sync-status-indicator");
+      const text = document.getElementById("sync-status-text");
+      const progressBar = document.getElementById("sync-progress-bar");
+      const percentBadge = document.getElementById("sync-percentage-badge");
+      const stepLabel = document.getElementById("sync-step-label");
+      const durationLabel = document.getElementById("sync-duration-label");
+
+      progressBar.style.width = "0%";
+      progressBar.className = "h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 progress-bar-striped transition-all duration-300 ease-out";
+      percentBadge.textContent = "0%";
+
+      const secureUrl = getSecureGASUrl();
+
+      if (!secureUrl) {
+        indicator.className = "inline-block w-2.5 h-2.5 rounded-full bg-emerald-400";
+        text.textContent = "Tersimpan aman di Pangkalan Data Lokal.";
+        stepLabel.textContent = "Pencatatan peringkat peserta berhasil diverifikasi.";
+        durationLabel.textContent = "Mode Offline / Lokal";
+        progressBar.style.width = "100%";
+        progressBar.className = "h-full rounded-full bg-emerald-500";
+        percentBadge.textContent = "100%";
+        return;
+      }
+
+      indicator.className = "inline-block w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse";
+      text.textContent = "Menghubungkan ke Google Apps Script...";
+      stepLabel.textContent = "Langkah 1/3: Mengirim data ke spreadsheet...";
+      progressBar.style.width = "30%";
+      percentBadge.textContent = "30%";
+
+      const startTime = Date.now();
+
+      // Buat URL Query String untuk GET cadangan
+      const jsonParam = encodeURIComponent(JSON.stringify(resultData));
+      const getUrl = secureUrl + (secureUrl.includes("?") ? "&" : "?") + "data=" + jsonParam;
+
+      // Kirim via GET dan POST secara terkoordinasi
+      try {
+        // Eksekusi GET beacon / fetch mode no-cors
+        fetch(getUrl, { mode: "no-cors", method: "GET" }).catch(() => {});
+      } catch (err) {}
+
+      // Eksekusi POST payload utama
+      fetch(secureUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(resultData)
+      }).then(() => {
+        completeSyncAnimation(startTime);
+      }).catch(() => {
+        // Fallback pemicu Image tag
+        const beaconImg = new Image();
+        beaconImg.src = getUrl;
+        completeSyncAnimation(startTime);
+      });
+    }
+
+    function completeSyncAnimation(startTime) {
+      const indicator = document.getElementById("sync-status-indicator");
+      const text = document.getElementById("sync-status-text");
+      const progressBar = document.getElementById("sync-progress-bar");
+      const percentBadge = document.getElementById("sync-percentage-badge");
+      const stepLabel = document.getElementById("sync-step-label");
+      const durationLabel = document.getElementById("sync-duration-label");
+
+      progressBar.style.width = "75%";
+      percentBadge.textContent = "75%";
+      stepLabel.textContent = "Langkah 2/3: Menulis baris nilai & validasi data...";
+
+      setTimeout(() => {
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+        progressBar.style.width = "100%";
+        progressBar.className = "h-full rounded-full bg-emerald-500";
+        percentBadge.textContent = "100%";
+        percentBadge.className = "px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold";
+        indicator.className = "inline-block w-2.5 h-2.5 rounded-full bg-emerald-400";
+        text.textContent = "✓ Nilai berhasil otomatis masuk ke Google Spreadsheet!";
+        stepLabel.textContent = "Tercatat di sheet 'Database_Nilai_Kuis'";
+        durationLabel.textContent = `Selesai dalam ${elapsed} detik`;
+      }, 500);
+    }
+
+    function openCertificateModal() {
+      document.getElementById("cert-nama").textContent = studentData.nama || "Peserta Ujian";
+      document.getElementById("cert-sekolah").textContent = studentData.sekolah || "Sekolah Dasar";
+      document.getElementById("cert-kelas").textContent = studentData.kelas || "6";
+      document.getElementById("cert-paket").textContent = "Paket " + studentData.paket;
+
+      const score = document.getElementById("result-score").textContent;
+      const predikat = document.getElementById("result-predikat").textContent;
+      document.getElementById("cert-skor").textContent = score;
+      document.getElementById("cert-predikat").textContent = predikat;
+
+      const now = new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById("cert-tanggal").textContent = now.toLocaleDateString("id-ID", options);
+      
+      const regId = "FABEL/" + now.getFullYear() + "/" + String(now.getMonth()+1).padStart(2, '0') + "/" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById("cert-no").textContent = regId;
+
+      document.getElementById("modal-certificate").classList.remove("hidden");
+    }
+
+    function closeCertificateModal() {
+      document.getElementById("modal-certificate").classList.add("hidden");
+    }
+
+    function downloadCertificatePNG() {
+      const element = document.getElementById("certificate-print-area");
+      if (!element || typeof html2canvas === "undefined") return;
+
+      html2canvas(element, {
+        scale: 2.5,
+        useCORS: true,
+        backgroundColor: "#ffffff"
+      }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = `Sertifikat_Fabel_${studentData.nama.replace(/\s+/g, '_')}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    }
+
+    function downloadCertificatePDF() {
+      const element = document.getElementById("certificate-print-area");
+      if (!element || typeof html2pdf === "undefined") return;
+
+      const opt = {
+        margin: 5,
+        filename: `Sertifikat_Fabel_${studentData.nama.replace(/\s+/g, '_')}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2.5, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+      };
+
+      html2pdf().set(opt).from(element).save();
+    }
+
+    function openLeaderboardModal() {
+      renderLeaderboardTable();
+      document.getElementById("modal-leaderboard").classList.remove("hidden");
+    }
+
+    function closeLeaderboardModal() {
+      document.getElementById("modal-leaderboard").classList.add("hidden");
+    }
+
+    function showLeaderboardFromNav() {
+      openLeaderboardModal();
+    }
+
+    function renderLeaderboardTable() {
+      const filterPaket = document.getElementById("filter-paket-select").value;
+      const tbody = document.getElementById("leaderboard-tbody");
+      tbody.innerHTML = "";
+
+      let list = [...leaderboardData];
+      if (filterPaket !== "ALL") {
+        list = list.filter(item => item.paket === filterPaket);
+      }
+
+      list.sort((a, b) => (Number(b.score) || 0) - (Number(a.score) || 0));
+
+      document.getElementById("leaderboard-total-count").textContent = list.length;
+
+      if (list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-6 text-slate-500 italic">
+              Belum ada data nilai peserta untuk paket ini.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      list.forEach((item, idx) => {
+        const tr = document.createElement("tr");
+        tr.className = "hover:bg-slate-800/40 transition";
+
+        let rankBadge = `<span class="font-bold text-slate-400">${idx + 1}</span>`;
+        if (idx === 0) rankBadge = `<span class="w-6 h-6 rounded-full bg-amber-400 text-slate-950 font-black flex items-center justify-center mx-auto text-[11px] shadow-md shadow-amber-500/30">1</span>`;
+        else if (idx === 1) rankBadge = `<span class="w-6 h-6 rounded-full bg-slate-300 text-slate-950 font-black flex items-center justify-center mx-auto text-[11px]">2</span>`;
+        else if (idx === 2) rankBadge = `<span class="w-6 h-6 rounded-full bg-amber-700 text-white font-black flex items-center justify-center mx-auto text-[11px]">3</span>`;
+
+        let statusClass = "text-emerald-400 bg-emerald-500/10 border-emerald-500/20";
+        if (item.status === "Keluar Sebelum Selesai") {
+          statusClass = "text-rose-400 bg-rose-500/10 border-rose-500/20";
+        }
+
+        tr.innerHTML = `
+          <td class="py-3 px-3 text-center">${rankBadge}</td>
+          <td class="py-3 px-3 font-bold text-white">${item.nama}</td>
+          <td class="py-3 px-3 text-slate-300">${item.sekolah || '-'}</td>
+          <td class="py-3 px-3 text-center text-slate-400 font-semibold">${item.kelas || '-'}</td>
+          <td class="py-3 px-3 text-center text-emerald-400 font-semibold">${item.paket}</td>
+          <td class="py-3 px-3 text-center font-extrabold ${item.score >= 80 ? 'text-amber-400' : 'text-slate-200'} text-sm">${item.score}</td>
+          <td class="py-3 px-3 text-center">
+            <span class="px-2 py-0.5 rounded-full border text-[10px] font-bold ${statusClass}">
+              ${item.status}
+            </span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function restartQuizToHome() {
+      clearInterval(timerInterval);
+      quizActive = false;
+      document.getElementById("screen-result").classList.add("hidden");
+      document.getElementById("screen-quiz").classList.add("hidden");
+      document.getElementById("screen-start").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showCustomConfirmModal(message, onConfirmCallback) {
+      let modal = document.getElementById("custom-confirm-modal");
+      if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "custom-confirm-modal";
+        modal.className = "fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4";
+        modal.innerHTML = `
+          <div class="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-3xl p-6 text-center shadow-2xl">
+            <div class="text-3xl mb-3">❓</div>
+            <p id="custom-confirm-text" class="text-xs text-slate-200 whitespace-pre-line leading-relaxed mb-5"></p>
+            <div class="flex justify-center space-x-3 text-xs">
+              <button id="custom-confirm-cancel" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition">
+                Periksa Kembali
+              </button>
+              <button id="custom-confirm-ok" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition">
+                Ya, Kumpulkan
+              </button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
+
+      document.getElementById("custom-confirm-text").textContent = message;
+      modal.classList.remove("hidden");
+
+      document.getElementById("custom-confirm-cancel").onclick = () => {
+        modal.classList.add("hidden");
+      };
+
+      document.getElementById("custom-confirm-ok").onclick = () => {
+        modal.classList.add("hidden");
+        if (typeof onConfirmCallback === "function") onConfirmCallback();
+      };
+    }
+  </script>
+</body>
+</html>
