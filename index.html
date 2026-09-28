@@ -265,6 +265,7 @@
       </div>
     </section>
 
+    <!-- SCREEN 2: LEMBAR PENGERJAAN KUIS -->
     <section id="screen-quiz" class="w-full max-w-6xl mx-auto hidden anim-hero-entrance relative z-10">
       
       <!-- Bar Informasi Siswa & Countdown Timer -->
@@ -441,6 +442,7 @@
       </div>
     </section>
 
+    <!-- SCREEN 3: HASIL ASESMEN & SINKRONISASI DATABASE -->
     <section id="screen-result" class="w-full max-w-4xl mx-auto hidden anim-hero-entrance relative z-10">
       <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
         
@@ -559,6 +561,7 @@
 
   </main>
 
+  <!-- MODAL SERTIFIKAT PENGHARGAAN RESMI -->
   <div id="modal-certificate" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-3xl p-4 sm:p-6 shadow-2xl relative my-auto">
       
@@ -597,7 +600,7 @@
         </div>
       </div>
 
-      <!-- DESAIN KANVAS SERTIFIKAT ROYAL NAVY & GOLD (Bukan Pramuka/Cokelat) -->
+      <!-- DESAIN KANVAS SERTIFIKAT ROYAL NAVY & GOLD -->
       <div class="overflow-x-auto pb-2 flex justify-center">
         <div 
           id="certificate-print-area" 
@@ -636,14 +639,16 @@
             <!-- Kepala Sertifikat dengan Logo MfyTech -->
             <div class="text-center pt-1">
               
-              <!-- LOGO RESMI MfyTech (Transparan, Menyatu Alami Tanpa Background Hitam) -->
+              <!-- LOGO RESMI MfyTech (Transparan, Anti-CORS & Anti-403) -->
               <div class="flex items-center justify-center mb-1">
                 <img 
+                  id="cert-logo-img"
                   src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRJ4Ug8_CgiPsEjNnOz72V66ezZCIhqTVb8GTrBu8U5R6iNtpwEa-3Qx8xfP2Nn9w8bwPm95yXhG0_pr29pGR3HCSx8FL7VmJkjQS6ic1zUvHQeZI2w-fF44KrjFsTfY8-SqyrEVrO9KjfMka7xWmkHv1RTCS4o0H-vMIsGptO0w6Ex8cLdcw4Bkd9u5M/s1600/Mawaddaty%20(3).png" 
                   alt="Logo Resmi MfyTech" 
-                  crossorigin="anonymous"
+                  referrerpolicy="no-referrer"
                   class="h-14 sm:h-16 w-auto object-contain drop-shadow-sm select-none"
                   style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));"
+                  onerror="this.onerror=null; this.src='https://images.weserv.nl/?url=' + encodeURIComponent('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRJ4Ug8_CgiPsEjNnOz72V66ezZCIhqTVb8GTrBu8U5R6iNtpwEa-3Qx8xfP2Nn9w8bwPm95yXhG0_pr29pGR3HCSx8FL7VmJkjQS6ic1zUvHQeZI2w-fF44KrjFsTfY8-SqyrEVrO9KjfMka7xWmkHv1RTCS4o0H-vMIsGptO0w6Ex8cLdcw4Bkd9u5M/s1600/Mawaddaty%20(3).png');"
                 />
               </div>
 
@@ -732,6 +737,7 @@
     </div>
   </div>
 
+  <!-- MODAL PAPAN PERINGKAT (LEADERBOARD) -->
   <div id="modal-leaderboard" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-7 shadow-2xl relative my-auto">
       
@@ -801,6 +807,7 @@
     </div>
   </div>
 
+  <!-- MODAL PELANGGARAN UJIAN (ANTI KELUAR HALAMAN) -->
   <div id="modal-violation" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden flex items-center justify-center p-4">
     <div class="w-full max-w-md bg-slate-900 border-2 border-rose-600/80 rounded-3xl p-6 text-center shadow-2xl relative">
       <div class="w-16 h-16 rounded-2xl bg-rose-500/20 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4 border border-rose-500/30">
@@ -845,7 +852,6 @@
     const FABEL_PACKETS = {
       1: {
         title: "Paket 1: Nilai Kepemimpinan & Menghargai Perbedaan",
-        // 5 Stimulus untuk 15 Soal Pilihan Ganda (Masing-masing 3 soal)
         stimuli: [
           {
             part: "Stimulus I (Soal 1 s.d. 3)",
@@ -998,7 +1004,6 @@
             ]
           }
         ],
-        // STIMULUS KHUSUS UNTUK 5 PERTANYAAN BENAR-SALAH (SOAL 16 s.d. 20)
         tfStimulus: {
           part: "Stimulus Khusus Evaluasi Kritis (Soal 16 s.d. 20)",
           title: "Kearifan Mata Air Savana Savira",
@@ -1019,7 +1024,7 @@
       }
     };
 
-    // Replikasi paket 2 s.d. 5 agar seluruh paket memiliki struktur stimulus terdistribusi yang sama
+    // Replikasi paket 2 s.d. 5
     for (let p = 2; p <= 5; p++) {
       FABEL_PACKETS[p] = JSON.parse(JSON.stringify(FABEL_PACKETS[1]));
       FABEL_PACKETS[p].title = `Paket ${p}: Nilai Kepemimpinan & Menghargai Perbedaan`;
@@ -1033,9 +1038,9 @@
     };
 
     let currentMCQIndex = 0; // 0 s.d. 14 (Total 15 Soal)
-    let userMCQAnswers = {}; // { 0: 1, 1: 3, ... }
-    let userTFAnswers = {};  // { 0: true, 1: false, ... }
-    let currentSection = 'mcq'; // 'mcq' atau 'tf'
+    let userMCQAnswers = {};
+    let userTFAnswers = {};
+    let currentSection = 'mcq';
     let quizActive = false;
     let timerInterval = null;
     let timeRemaining = 1200; // 20 Menit (1200 detik)
@@ -1128,9 +1133,7 @@
       leaderboardData.unshift(violationRecord);
       localStorage.setItem("FABEL_LEADERBOARD", JSON.stringify(leaderboardData));
 
-      // Otomatis tersimpan ke spreadsheet saat terdiskualifikasi
       syncResultToGoogleSheets(violationRecord);
-
       document.getElementById("modal-violation").classList.remove("hidden");
     }
 
@@ -1160,11 +1163,8 @@
       document.getElementById("hud-kelas").textContent = kelas;
       document.getElementById("hud-paket").textContent = "Paket " + paket;
 
-      // Render palet dan beralih ke soal pertama
       renderMCQNumberPalette();
       switchToMCQ(0);
-
-      // Siapkan daftar soal Benar-Salah
       renderTFQuestionsList(paket);
 
       document.getElementById("screen-start").classList.add("hidden");
@@ -1175,15 +1175,6 @@
       quizActive = true;
     }
 
-    /**
-     * Memperbarui tampilan teks stimulus secara dinamis:
-     * - Soal 1, 2, 3   -> Stimulus 1
-     * - Soal 4, 5, 6   -> Stimulus 2
-     * - Soal 7, 8, 9   -> Stimulus 3
-     * - Soal 10, 11, 12 -> Stimulus 4
-     * - Soal 13, 14, 15 -> Stimulus 5
-     * - Bagian Benar-Salah (16-20) -> Stimulus Khusus Benar-Salah
-     */
     function updateDynamicStimulus() {
       const pkt = studentData.paket;
       const pktData = FABEL_PACKETS[pkt] || FABEL_PACKETS[1];
@@ -1192,13 +1183,11 @@
       const contentEl = document.getElementById("fabel-content");
 
       if (currentSection === 'tf') {
-        // Tampilkan Stimulus Khusus Benar-Salah
         const tfStim = pktData.tfStimulus;
         titleEl.textContent = tfStim.title;
         wordCountEl.textContent = `${tfStim.part} • ${tfStim.wordCount}`;
         contentEl.innerHTML = tfStim.story.map(p => `<p class="leading-relaxed indent-6 text-justify">${p}</p>`).join("");
       } else {
-        // Hitung stimulus index (0 s.d. 4) berdasarkan nomor soal (0 s.d. 14)
         const stimIndex = Math.floor(currentMCQIndex / 3);
         const stim = pktData.stimuli[stimIndex];
         titleEl.textContent = stim.title;
@@ -1244,7 +1233,6 @@
       const palette = document.getElementById("mcq-number-palette");
       palette.innerHTML = "";
 
-      // 15 Tombol Pilihan Ganda
       for (let idx = 0; idx < 15; idx++) {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -1257,7 +1245,6 @@
         palette.appendChild(btn);
       }
 
-      // 1 Tombol Tambahan untuk Bagian II (Benar-Salah 16-20)
       const tfBtn = document.createElement("button");
       tfBtn.type = "button";
       tfBtn.id = "palette-tf-btn";
@@ -1479,7 +1466,6 @@
 
       const pktData = FABEL_PACKETS[studentData.paket] || FABEL_PACKETS[1];
 
-      // 1. Hitung Nilai Pilihan Ganda (15 Soal x 5 Poin = 75 Poin Maksimal)
       let correctMCQCount = 0;
       for (let i = 0; i < 15; i++) {
         const q = getQuestionByIndex(i);
@@ -1489,7 +1475,6 @@
       }
       const mcqScore = correctMCQCount * 5;
 
-      // 2. Hitung Nilai Benar-Salah (5 Soal x 5 Poin = 25 Poin Maksimal)
       let correctTFCount = 0;
       pktData.tfStimulus.questions.forEach((item, idx) => {
         if (userTFAnswers[idx] === item.answer) {
@@ -1498,10 +1483,8 @@
       });
       const tfScore = correctTFCount * 5;
 
-      // 3. Nilai Akhir Total (Skala 100)
       const finalScore = mcqScore + tfScore;
 
-      // 4. Predikat
       let predikat = "Perlu Bimbingan (E)";
       if (finalScore >= 90) predikat = "Istimewa (A)";
       else if (finalScore >= 80) predikat = "Sangat Baik (B)";
@@ -1534,15 +1517,9 @@
       document.getElementById("screen-quiz").classList.add("hidden");
       document.getElementById("screen-result").classList.remove("hidden");
 
-      // OTOMATIS TERSIMPAN KE GOOGLE SPREADSHEET
       syncResultToGoogleSheets(record);
     }
 
-    /**
-     * Pengiriman data otomatis ke Google Spreadsheet dengan dual-mode:
-     * 1. Mode Utama: POST dengan Content-Type text/plain (bebas preflight CORS)
-     * 2. Mode Cadangan: GET Parameter URL (menjamin data tetap masuk saat 302 Apps Script)
-     */
     function syncResultToGoogleSheets(resultData) {
       const indicator = document.getElementById("sync-status-indicator");
       const text = document.getElementById("sync-status-text");
@@ -1575,18 +1552,13 @@
       percentBadge.textContent = "30%";
 
       const startTime = Date.now();
-
-      // Buat URL Query String untuk GET cadangan
       const jsonParam = encodeURIComponent(JSON.stringify(resultData));
       const getUrl = secureUrl + (secureUrl.includes("?") ? "&" : "?") + "data=" + jsonParam;
 
-      // Kirim via GET dan POST secara terkoordinasi
       try {
-        // Eksekusi GET beacon / fetch mode no-cors
         fetch(getUrl, { mode: "no-cors", method: "GET" }).catch(() => {});
       } catch (err) {}
 
-      // Eksekusi POST payload utama
       fetch(secureUrl, {
         method: "POST",
         mode: "no-cors",
@@ -1595,7 +1567,6 @@
       }).then(() => {
         completeSyncAnimation(startTime);
       }).catch(() => {
-        // Fallback pemicu Image tag
         const beaconImg = new Image();
         beaconImg.src = getUrl;
         completeSyncAnimation(startTime);
@@ -1659,10 +1630,11 @@
       html2canvas(element, {
         scale: 2.5,
         useCORS: true,
+        allowTaint: true,
         backgroundColor: "#ffffff"
       }).then(canvas => {
         const link = document.createElement("a");
-        link.download = `Sertifikat_Fabel_${studentData.nama.replace(/\s+/g, '_')}.png`;
+        link.download = `Sertifikat_Fabel_${(studentData.nama || 'Peserta').replace(/\s+/g, '_')}.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
       });
@@ -1674,9 +1646,9 @@
 
       const opt = {
         margin: 5,
-        filename: `Sertifikat_Fabel_${studentData.nama.replace(/\s+/g, '_')}.pdf`,
+        filename: `Sertifikat_Fabel_${(studentData.nama || 'Peserta').replace(/\s+/g, '_')}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2.5, useCORS: true },
+        html2canvas: { scale: 2.5, useCORS: true, allowTaint: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
       };
 
