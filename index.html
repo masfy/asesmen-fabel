@@ -89,7 +89,7 @@
 
   <header class="w-full bg-slate-900/90 backdrop-blur-md border-b border-slate-800 sticky top-0 z-40 px-4 sm:px-8 py-3.5 shadow-md">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <div class="flex items-center space-x-3 cursor-pointer" onclick="showLeaderboardFromNav()">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="openLeaderboardModal()">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-xl shadow-lg shadow-emerald-500/20">
           🦁
         </div>
@@ -231,11 +231,11 @@
                   id="select-paket" 
                   class="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 text-xs sm:text-sm outline-none transition appearance-none font-medium pr-10 cursor-pointer"
                 >
-                  <option value="1">Paket 1: Musyawarah di Bawah Naungan Beringin Tua (172 Kata)</option>
-                  <option value="2">Paket 2: Rembuk Lembah Pinus yang Asri (174 Kata)</option>
-                  <option value="3">Paket 3: Sinergi di Hutan Bakau Pesisir (168 Kata)</option>
-                  <option value="4">Paket 4: Harmoni di Bukit Teratai Emas (171 Kata)</option>
-                  <option value="5">Paket 5: Ujian Badai di Lembah Akasia (169 Kata)</option>
+                  <option value="1">Paket 1: Musyawarah di Bawah Naungan Beringin Tua</option>
+                  <option value="2">Paket 2: Rembuk Lembah Pinus yang Asri</option>
+                  <option value="3">Paket 3: Sinergi di Hutan Bakau Pesisir</option>
+                  <option value="4">Paket 4: Harmoni di Bukit Teratai Emas</option>
+                  <option value="5">Paket 5: Ujian Badai di Lembah Akasia</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-slate-400 text-xs">
                   <i class="fa-solid fa-chevron-down"></i>
@@ -326,10 +326,8 @@
           </div>
         </div>
 
-        <!-- Kolom Lembar Pengerjaan Soal (Tunggal & Terpadu) -->
+        <!-- Kolom Lembar Pengerjaan Soal -->
         <div class="lg:col-span-7 space-y-5">
-          
-          <!-- KONTAINER LEMBAR SOAL UTAMA -->
           <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl relative">
             
             <!-- TAMPILAN 1: SOAL PILIHAN GANDA (1 S.D. 15) -->
@@ -354,9 +352,7 @@
               </p>
 
               <!-- Opsi Pilihan A, B, C, D -->
-              <div id="mcq-options-container" class="space-y-2.5 mb-6">
-                <!-- Tombol Opsi disuntikkan dinamis -->
-              </div>
+              <div id="mcq-options-container" class="space-y-2.5 mb-6"></div>
 
               <!-- Navigasi Bawah PG -->
               <div class="flex items-center justify-between pt-4 border-t border-slate-800">
@@ -382,7 +378,7 @@
               </div>
             </div>
 
-            <!-- TAMPILAN 2: SOAL BENAR - SALAH (SETELAH NOMOR 15) -->
+            <!-- TAMPILAN 2: SOAL BENAR - SALAH -->
             <div id="view-tf-container" class="hidden">
               <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
                 <div>
@@ -398,9 +394,7 @@
                 Tentukan kebenaran masing-masing pernyataan berikut berdasarkan isi teks fabel di samping. Pilih tombol <strong>[Benar]</strong> atau <strong>[Salah]</strong> pada tiap baris pernyataan.
               </p>
 
-              <div id="tf-questions-list" class="space-y-3 mb-6">
-                <!-- 5 Pernyataan Benar-Salah disuntikkan dinamis -->
-              </div>
+              <div id="tf-questions-list" class="space-y-3 mb-6"></div>
 
               <!-- Navigasi Bawah Benar-Salah -->
               <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-800">
@@ -424,19 +418,16 @@
               </div>
             </div>
 
-            <!-- Palet Navigasi Cepat Seluruh Soal (1 s.d. 15 PG + Tombol B/S) -->
+            <!-- Palet Navigasi Cepat -->
             <div class="mt-6 pt-4 border-t border-slate-800">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Navigasi Lembar Ujian:</span>
                 <span class="text-[10px] text-slate-500">15 PG + 5 Benar/Salah</span>
               </div>
-              <div id="mcq-number-palette" class="grid grid-cols-6 sm:grid-cols-16 gap-1.5">
-                <!-- 15 kotak nomor PG + 1 tombol B/S disuntikkan dinamis -->
-              </div>
+              <div id="mcq-number-palette" class="grid grid-cols-6 sm:grid-cols-16 gap-1.5"></div>
             </div>
 
           </div>
-
         </div>
 
       </div>
@@ -446,7 +437,6 @@
     <section id="screen-result" class="w-full max-w-4xl mx-auto hidden anim-hero-entrance relative z-10">
       <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
         
-        <!-- Header Hasil Ujian -->
         <div class="text-center pb-6 border-b border-slate-800">
           <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-300 text-3xl shadow-xl shadow-amber-500/20 mb-3">
             🏆
@@ -459,7 +449,6 @@
           </p>
         </div>
 
-        <!-- Kartu Skor & Biodata Siswa -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
           <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 text-center flex flex-col justify-center">
             <span class="text-xs font-bold text-slate-400 uppercase">Nilai Akhir</span>
@@ -504,14 +493,13 @@
           <div class="flex items-center justify-between gap-2 mb-2">
             <div class="flex items-center space-x-2">
               <span id="sync-status-indicator" class="inline-block w-2.5 h-2.5 rounded-full bg-slate-400"></span>
-              <span id="sync-status-text" class="text-slate-200 font-semibold">Menginisialisasi transmisi ke Google Spreadsheet...</span>
+              <span id="sync-status-text" class="text-slate-200 font-semibold">Menginisialisasi transmisi data...</span>
             </div>
             <div class="flex items-center space-x-2">
               <span id="sync-percentage-badge" class="px-2 py-0.5 rounded-full bg-slate-700 text-slate-200 text-[11px] font-bold">0%</span>
             </div>
           </div>
 
-          <!-- Batang Progress Animasi Bergaris -->
           <div class="w-full bg-slate-700/80 rounded-full h-3 overflow-hidden p-0.5 border border-slate-600">
             <div 
               id="sync-progress-bar" 
@@ -521,12 +509,11 @@
           </div>
 
           <div class="flex justify-between items-center text-[10px] text-slate-400 mt-2">
-            <span id="sync-step-label">Langkah: Menyiapkan koneksi aman Apps Script</span>
-            <span id="sync-duration-label">Estimasi: ~2 detik</span>
+            <span id="sync-step-label">Langkah: Mengirim baris nilai ke cloud</span>
+            <span id="sync-duration-label">Mode Cepat</span>
           </div>
         </div>
 
-        <!-- Tombol Aksi Akhir -->
         <div class="flex flex-wrap items-center justify-center gap-3 pt-4 border-t border-slate-800">
           <button 
             type="button" 
@@ -561,11 +548,10 @@
 
   </main>
 
-  <!-- MODAL SERTIFIKAT PENGHARGAAN RESMI -->
+  <!-- MODAL SERTIFIKAT -->
   <div id="modal-certificate" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-3xl p-4 sm:p-6 shadow-2xl relative my-auto">
       
-      <!-- Bar Tombol Aksi Atas -->
       <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
         <div class="flex items-center space-x-2">
           <span class="w-3 h-3 rounded-full bg-amber-400"></span>
@@ -600,14 +586,14 @@
         </div>
       </div>
 
-      <!-- DESAIN KANVAS SERTIFIKAT ROYAL NAVY & GOLD -->
+      <!-- KANVAS SERTIFIKAT -->
       <div class="overflow-x-auto pb-2 flex justify-center">
         <div 
           id="certificate-print-area" 
           class="certificate-frame w-[840px] h-[590px] text-slate-900 p-8 flex flex-col justify-between select-none relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-amber-50/30"
           style="min-width: 840px;"
         >
-          <!-- Ornamen Sudut Emas Logam Klasik (SVG) -->
+          <!-- Ornamen Sudut Emas -->
           <div class="absolute top-2 left-2 w-16 h-16 pointer-events-none opacity-80">
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 0 H100 V16 H16 V100 H0 Z" fill="#D4AF37"/>
@@ -633,13 +619,8 @@
             </svg>
           </div>
 
-          <!-- Bingkai Garis Ganda Emas -->
           <div class="certificate-inner-border h-full p-6 flex flex-col justify-between">
-            
-            <!-- Kepala Sertifikat dengan Logo MfyTech -->
             <div class="text-center pt-1">
-              
-              <!-- LOGO RESMI MfyTech (Transparan, Anti-CORS & Anti-403) -->
               <div class="flex items-center justify-center mb-1">
                 <img 
                   id="cert-logo-img"
@@ -647,7 +628,6 @@
                   alt="Logo Resmi MfyTech" 
                   referrerpolicy="no-referrer"
                   class="h-14 sm:h-16 w-auto object-contain drop-shadow-sm select-none"
-                  style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));"
                   onerror="this.onerror=null; this.src='https://images.weserv.nl/?url=' + encodeURIComponent('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRJ4Ug8_CgiPsEjNnOz72V66ezZCIhqTVb8GTrBu8U5R6iNtpwEa-3Qx8xfP2Nn9w8bwPm95yXhG0_pr29pGR3HCSx8FL7VmJkjQS6ic1zUvHQeZI2w-fF44KrjFsTfY8-SqyrEVrO9KjfMka7xWmkHv1RTCS4o0H-vMIsGptO0w6Ex8cLdcw4Bkd9u5M/s1600/Mawaddaty%20(3).png');"
                 />
               </div>
@@ -659,11 +639,10 @@
                 CERTIFICATE OF ACHIEVEMENT
               </h1>
               <p class="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">
-                Nomor Registrasi: <span id="cert-no" class="font-mono text-slate-700">FABEL/2026/09/001</span>
+                Nomor Registrasi: <span id="cert-no" class="font-mono text-slate-700">FABEL/2026/10/001</span>
               </p>
             </div>
 
-            <!-- Badan Sertifikat -->
             <div class="text-center my-auto py-2">
               <p class="text-xs text-slate-600 font-serif-luxury italic mb-1">Dengan penuh kebanggaan dianugerahkan kepada:</p>
               
@@ -688,22 +667,17 @@
               </div>
             </div>
 
-            <!-- Kaki Sertifikat: Tanda Tangan & Meta Verified Lencana -->
             <div class="pt-4 border-t border-slate-200/80 grid grid-cols-3 items-end text-xs">
-              
-              <!-- Kolom Kiri: Verifikasi & Tanggal -->
               <div class="text-left space-y-1">
                 <span class="text-[10px] text-slate-400 block uppercase font-bold">Diterbitkan Pada</span>
-                <span id="cert-tanggal" class="font-semibold text-slate-800 text-[11px]">29 September 2026</span>
+                <span id="cert-tanggal" class="font-semibold text-slate-800 text-[11px]">04 Oktober 2026</span>
                 <div class="text-[10px] text-emerald-700 font-bold flex items-center space-x-1 pt-1">
-                  <span>● Terdaftar di Pangkalan Data Kuis</span>
+                  <span>● Terdaftar di Cloud Spreadsheet</span>
                 </div>
               </div>
 
-              <!-- Kolom Tengah: Ikon Resmi Meta Verified Asli -->
               <div class="flex flex-col items-center justify-center">
                 <div class="relative flex items-center justify-center">
-                  <!-- Lencana Biru Meta Verified 8 Segi (SVG) -->
                   <svg class="w-12 h-12 drop-shadow-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.222 2.098a2.5 2.5 0 013.556 0l1.173 1.173c.47.47 1.1.732 1.764.732h1.66c1.38 0 2.5 1.12 2.5 2.5v1.66c0 .664.262 1.294.732 1.764l1.173 1.173a2.5 2.5 0 010 3.556l-1.173 1.173a2.493 2.493 0 00-.732 1.764v1.66c0 1.38-1.12 2.5-2.5 2.5h-1.66a2.493 2.493 0 00-1.764.732l-1.173 1.173a2.5 2.5 0 01-3.556 0l-1.173-1.173a2.493 2.493 0 00-1.764-.732h-1.66c-1.38 0-2.5-1.12-2.5-2.5v-1.66c0-.664-.262-1.294-.732-1.764l-1.173-1.173a2.5 2.5 0 010-3.556l1.173-1.173c.47-.47.732-1.1.732-1.764v-1.66c0-1.38 1.12-2.5 2.5-2.5h1.66c.664 0 1.294-.262 1.764-.732l1.173-1.173z" fill="#0080FB"/>
                     <path d="M9.5 12.3l1.8 1.8 4.2-4.2" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -713,21 +687,16 @@
                 <span class="text-[8px] text-slate-400">Official Authenticity</span>
               </div>
 
-              <!-- Kolom Kanan: Tanda Tangan "Alfy" & Nama Pendidik -->
               <div class="text-right">
                 <span class="text-[10px] text-slate-400 block uppercase font-bold">Pendidik Pengampu</span>
-                
-                <!-- Goresan Kaligrafi Bertuliskan "Alfy" -->
                 <div class="font-signature text-3xl text-[#0f172a] h-10 flex items-center justify-end pr-2 select-none">
                   Alfy
                 </div>
-
                 <div class="border-t border-slate-700/60 pt-1">
                   <span class="font-bold text-[#0f172a] text-xs block">Alfian Noor Arnaim, S.Pd.Gr.</span>
                   <span class="text-[9px] text-slate-500">Guru Penggerak & Pengembang Materi</span>
                 </div>
               </div>
-
             </div>
 
           </div>
@@ -737,28 +706,47 @@
     </div>
   </div>
 
-  <!-- MODAL PAPAN PERINGKAT (LEADERBOARD) -->
+  <!-- MODAL PAPAN PERINGKAT -->
   <div id="modal-leaderboard" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-3xl p-5 sm:p-7 shadow-2xl relative my-auto">
       
-      <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+      <div class="flex flex-wrap items-center justify-between pb-4 mb-4 border-b border-slate-800 gap-3">
         <div class="flex items-center space-x-2.5">
-          <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl">
             🏆
           </div>
           <div>
-            <h3 class="text-base sm:text-lg font-bold text-white">Papan Peringkat Hasil Kuis</h3>
-            <p class="text-xs text-slate-400">Peringkat nilai berdasarkan akurasi dan ketuntasan ujian.</p>
+            <h3 class="text-base sm:text-lg font-bold text-white flex items-center space-x-2">
+              <span>Papan Peringkat Hasil Kuis</span>
+              <span id="leaderboard-sync-badge" class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold flex items-center space-x-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Optimized Memory Cache (5 Menit)</span>
+              </span>
+            </h3>
+            <p class="text-xs text-slate-400">Menampilkan peringkat teratas dengan komputasi cepat memori.</p>
           </div>
         </div>
 
-        <button 
-          type="button" 
-          onclick="closeLeaderboardModal()" 
-          class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-sm font-bold transition"
-        >
-          ✕
-        </button>
+        <div class="flex items-center space-x-2">
+          <button 
+            type="button" 
+            onclick="fetchLeaderboardFromCloud(true)" 
+            id="btn-refresh-leaderboard"
+            title="Muat data terkini"
+            class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-200 transition flex items-center space-x-1.5"
+          >
+            <i class="fa-solid fa-arrows-rotate text-emerald-400" id="icon-refresh-spin"></i>
+            <span>Segarkan</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="closeLeaderboardModal()" 
+            class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-sm font-bold transition"
+          >
+            ✕
+          </button>
+        </div>
       </div>
 
       <!-- Filter Pencarian & Paket -->
@@ -767,10 +755,10 @@
           <label for="filter-paket-select" class="text-slate-400 font-semibold">Filter Paket:</label>
           <select 
             id="filter-paket-select" 
-            onchange="renderLeaderboardTable()" 
+            onchange="handleFilterPaketChange()" 
             class="px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none cursor-pointer"
           >
-            <option value="ALL">Semua Paket</option>
+            <option value="ALL">Semua Paket (Top 100)</option>
             <option value="Paket 1">Paket 1</option>
             <option value="Paket 2">Paket 2</option>
             <option value="Paket 3">Paket 3</option>
@@ -779,15 +767,17 @@
           </select>
         </div>
 
-        <div class="text-slate-400 text-[11px]">
-          Total Peserta Tercatat: <strong id="leaderboard-total-count" class="text-white">0</strong>
+        <div class="text-slate-400 text-[11px] flex items-center space-x-1">
+          <span>Menampilkan:</span>
+          <strong id="leaderboard-total-count" class="text-white bg-slate-800 px-2 py-0.5 rounded-md border border-slate-700">0</strong>
+          <span>Peserta</span>
         </div>
       </div>
 
       <!-- Tabel Papan Peringkat -->
-      <div class="overflow-x-auto max-h-[50vh] rounded-2xl border border-slate-800">
+      <div class="overflow-x-auto max-h-[50vh] rounded-2xl border border-slate-800 relative">
         <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-slate-800/80 text-[11px] uppercase tracking-wider text-slate-400 sticky top-0">
+          <thead class="bg-slate-800/80 text-[11px] uppercase tracking-wider text-slate-400 sticky top-0 z-10 backdrop-blur-sm">
             <tr>
               <th class="py-3 px-3 text-center">Rank</th>
               <th class="py-3 px-3">Nama Siswa</th>
@@ -798,16 +788,14 @@
               <th class="py-3 px-3 text-center">Status</th>
             </tr>
           </thead>
-          <tbody id="leaderboard-tbody" class="divide-y divide-slate-800/60">
-            <!-- Baris data leaderboard disuntikkan dinamis -->
-          </tbody>
+          <tbody id="leaderboard-tbody" class="divide-y divide-slate-800/60"></tbody>
         </table>
       </div>
 
     </div>
   </div>
 
-  <!-- MODAL PELANGGARAN UJIAN (ANTI KELUAR HALAMAN) -->
+  <!-- MODAL PELANGGARAN -->
   <div id="modal-violation" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden flex items-center justify-center p-4">
     <div class="w-full max-w-md bg-slate-900 border-2 border-rose-600/80 rounded-3xl p-6 text-center shadow-2xl relative">
       <div class="w-16 h-16 rounded-2xl bg-rose-500/20 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4 border border-rose-500/30">
@@ -815,7 +803,7 @@
       </div>
       <h3 class="text-xl font-black text-white tracking-tight mb-2">Pelanggaran Terdeteksi!</h3>
       <p class="text-xs text-slate-300 leading-relaxed mb-4">
-        Anda terdeteksi berpindah jendela/tab atau keluar dari aplikasi saat ujian sedang berlangsung. Sesuai pakta integritas kuis, sesi ujian Anda dihentikan seketika dan tercatat di papan peringkat dengan status:
+        Anda terdeteksi berpindah jendela/tab saat ujian berlangsung. Sesi ujian Anda dihentikan otomatis dan dicatat di papan peringkat berstatus:
       </p>
       
       <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 font-bold text-xs mb-5">
@@ -844,11 +832,6 @@
   </footer>
 
   <script>
-    /* =========================================================================
-     * STRUKTUR DATA FABEL & SOAL ASESMEN
-     * Aturan: Setiap 1 stimulus fabel HANYA berlaku untuk 3 soal (Indikator 1, 2, 3)
-     * Soal Benar-Salah (16-20) memiliki stimulus teks fabel tersendiri!
-     * ========================================================================= */
     const FABEL_PACKETS = {
       1: {
         title: "Paket 1: Nilai Kepemimpinan & Menghargai Perbedaan",
@@ -1024,52 +1007,41 @@
       }
     };
 
-    // Replikasi paket 2 s.d. 5
     for (let p = 2; p <= 5; p++) {
       FABEL_PACKETS[p] = JSON.parse(JSON.stringify(FABEL_PACKETS[1]));
       FABEL_PACKETS[p].title = `Paket ${p}: Nilai Kepemimpinan & Menghargai Perbedaan`;
     }
 
-    let studentData = {
-      nama: "",
-      sekolah: "",
-      kelas: "",
-      paket: "1"
-    };
-
-    let currentMCQIndex = 0; // 0 s.d. 14 (Total 15 Soal)
+    let studentData = { nama: "", sekolah: "", kelas: "", paket: "1" };
+    let currentMCQIndex = 0;
     let userMCQAnswers = {};
     let userTFAnswers = {};
     let currentSection = 'mcq';
     let quizActive = false;
     let timerInterval = null;
-    let timeRemaining = 1200; // 20 Menit (1200 detik)
+    let timeRemaining = 1200;
     let violationTriggered = false;
 
-    /**
-     * Endpoint Google Apps Script yang aman (Terenkripsi Base64)
-     * URL: https://script.google.com/macros/s/AKfycbwT0EEoyywSrKxt2dOEv_6E5FJQBBZykFVV2HSfkIzGYjO0mqHjgS62mAPTu5JVItan/exec
-     */
+    // URL Google Apps Script Terenkripsi
     const _ENCODED_GAS_ENDPOINT = "aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3VDBFRW95eXdTckt4dDJkT0V2XzZFNUZKUUJCWnlrRlZWMkhTZmtJekdZak8wbXFIamdTNjJtQVBUdTVKVkl0YW4vZXhlYw==";
 
     function getSecureGASUrl() {
       try {
-        if (!_ENCODED_GAS_ENDPOINT || _ENCODED_GAS_ENDPOINT.trim() === "") return "";
-        if (_ENCODED_GAS_ENDPOINT.startsWith("http://") || _ENCODED_GAS_ENDPOINT.startsWith("https://")) {
-          return _ENCODED_GAS_ENDPOINT;
-        }
-        const decoded = atob(_ENCODED_GAS_ENDPOINT);
-        if (decoded && decoded.startsWith("http")) {
-          return decoded;
-        }
-        return "https://script.google.com/macros/s/AKfycbwT0EEoyywSrKxt2dOEv_6E5FJQBBZykFVV2HSfkIzGYjO0mqHjgS62mAPTu5JVItan/exec";
+        if (!_ENCODED_GAS_ENDPOINT) return "";
+        if (_ENCODED_GAS_ENDPOINT.startsWith("http")) return _ENCODED_GAS_ENDPOINT;
+        return atob(_ENCODED_GAS_ENDPOINT);
       } catch (e) {
-        return "https://script.google.com/macros/s/AKfycbwT0EEoyywSrKxt2dOEv_6E5FJQBBZykFVV2HSfkIzGYjO0mqHjgS62mAPTu5JVItan/exec";
+        return "";
       }
     }
 
-    // Papan Peringkat Lokal
-    let leaderboardData = JSON.parse(localStorage.getItem("FABEL_LEADERBOARD") || "[]");
+    // CACHING SISI BROWSER (Poin 4: Hindari Request Berulang jika Baru Diambil)
+    let leaderboardCache = {
+      data: JSON.parse(localStorage.getItem("FABEL_LEADERBOARD") || "[]"),
+      lastFetch: Number(localStorage.getItem("FABEL_LAST_FETCH") || 0)
+    };
+
+    const CLIENT_CACHE_TTL_MS = 180000; // 3 Menit di browser
 
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("footer-year").textContent = new Date().getFullYear();
@@ -1083,33 +1055,27 @@
       }
 
       setupExamSecurity();
+      
+      // Ambil data jika cache browser sudah kadaluarsa > 3 menit
+      const now = Date.now();
+      if (now - leaderboardCache.lastFetch > CLIENT_CACHE_TTL_MS || leaderboardCache.data.length === 0) {
+        fetchLeaderboardFromCloud(false);
+      }
     });
 
     function setupExamSecurity() {
-      document.addEventListener("contextmenu", (e) => {
-        if (quizActive) e.preventDefault();
-      });
-
+      document.addEventListener("contextmenu", (e) => { if (quizActive) e.preventDefault(); });
       document.addEventListener("keydown", (e) => {
         if (!quizActive) return;
-        if (
-          e.key === "PrintScreen" || 
-          (e.ctrlKey && (e.key === "p" || e.key === "P" || e.key === "s" || e.key === "S" || e.key === "u" || e.key === "U"))
-        ) {
+        if (e.key === "PrintScreen" || (e.ctrlKey && ["p","s","u"].includes(e.key.toLowerCase()))) {
           e.preventDefault();
         }
       });
-
       document.addEventListener("visibilitychange", () => {
-        if (quizActive && document.visibilityState === "hidden") {
-          triggerSecurityViolation();
-        }
+        if (quizActive && document.visibilityState === "hidden") triggerSecurityViolation();
       });
-
       window.addEventListener("blur", () => {
-        if (quizActive) {
-          triggerSecurityViolation();
-        }
+        if (quizActive) triggerSecurityViolation();
       });
     }
 
@@ -1125,14 +1091,14 @@
         kelas: studentData.kelas || "-",
         paket: "Paket " + studentData.paket,
         score: 0,
-        mcqScore: 0,
-        tfScore: 0,
+        mcqScore: "0 / 75",
+        tfScore: "0 / 25",
         status: "Keluar Sebelum Selesai",
         date: new Date().toLocaleString("id-ID")
       };
-      leaderboardData.unshift(violationRecord);
-      localStorage.setItem("FABEL_LEADERBOARD", JSON.stringify(leaderboardData));
 
+      leaderboardCache.data.unshift(violationRecord);
+      localStorage.setItem("FABEL_LEADERBOARD", JSON.stringify(leaderboardCache.data));
       syncResultToGoogleSheets(violationRecord);
       document.getElementById("modal-violation").classList.remove("hidden");
     }
@@ -1155,7 +1121,7 @@
       userTFAnswers = {};
       currentMCQIndex = 0;
       currentSection = 'mcq';
-      timeRemaining = 1200; // 20 menit
+      timeRemaining = 1200;
       violationTriggered = false;
 
       document.getElementById("hud-nama").textContent = nama;
@@ -1207,14 +1173,10 @@
         timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 
         if (timeRemaining <= 180) {
-          timerDisplay.classList.remove("text-amber-400");
           timerDisplay.classList.add("text-rose-500", "animate-pulse");
-          timerIcon.classList.remove("text-amber-400");
           timerIcon.classList.add("text-rose-500");
         } else {
-          timerDisplay.classList.add("text-amber-400");
           timerDisplay.classList.remove("text-rose-500", "animate-pulse");
-          timerIcon.classList.add("text-amber-400");
           timerIcon.classList.remove("text-rose-500");
         }
 
@@ -1224,7 +1186,6 @@
         }
         timeRemaining--;
       }
-
       updateTimer();
       timerInterval = setInterval(updateTimer, 1000);
     }
@@ -1239,9 +1200,7 @@
         btn.id = `palette-mcq-${idx}`;
         btn.className = getPaletteBtnClass(idx);
         btn.textContent = idx + 1;
-        btn.onclick = () => {
-          switchToMCQ(idx);
-        };
+        btn.onclick = () => switchToMCQ(idx);
         palette.appendChild(btn);
       }
 
@@ -1250,43 +1209,29 @@
       tfBtn.id = "palette-tf-btn";
       tfBtn.className = getTFPaletteBtnClass();
       tfBtn.textContent = "B/S";
-      tfBtn.title = "Bagian II: 5 Soal Benar-Salah (Stimulus Khusus)";
-      tfBtn.onclick = () => {
-        switchToTF();
-      };
+      tfBtn.title = "Bagian II: 5 Soal Benar-Salah";
+      tfBtn.onclick = () => switchToTF();
       palette.appendChild(tfBtn);
     }
 
     function getPaletteBtnClass(idx) {
       const isAnswered = userMCQAnswers[idx] !== undefined;
       const isCurrent = currentSection === 'mcq' && idx === currentMCQIndex;
-
       let cls = "h-8 rounded-lg text-xs font-bold transition flex items-center justify-center cursor-pointer ";
-      if (isCurrent) {
-        cls += "ring-2 ring-emerald-400 bg-emerald-600 text-white shadow-md ";
-      } else if (isAnswered) {
-        cls += "bg-teal-700/70 hover:bg-teal-600 text-white border border-teal-500/40 ";
-      } else {
-        cls += "bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 ";
-      }
+      if (isCurrent) cls += "ring-2 ring-emerald-400 bg-emerald-600 text-white shadow-md ";
+      else if (isAnswered) cls += "bg-teal-700/70 hover:bg-teal-600 text-white border border-teal-500/40 ";
+      else cls += "bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 ";
       return cls;
     }
 
     function getTFPaletteBtnClass() {
       const isCurrent = currentSection === 'tf';
       const tfCount = Object.keys(userTFAnswers).length;
-      const isFullAnswered = tfCount === 5;
-
       let cls = "h-8 rounded-lg text-xs font-bold transition flex items-center justify-center cursor-pointer ";
-      if (isCurrent) {
-        cls += "ring-2 ring-amber-400 bg-amber-600 text-white shadow-md ";
-      } else if (isFullAnswered) {
-        cls += "bg-amber-700/80 hover:bg-amber-600 text-white border border-amber-500/40 ";
-      } else if (tfCount > 0) {
-        cls += "bg-amber-900/60 hover:bg-amber-800 text-amber-200 border border-amber-600/40 ";
-      } else {
-        cls += "bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 ";
-      }
+      if (isCurrent) cls += "ring-2 ring-amber-400 bg-amber-600 text-white shadow-md ";
+      else if (tfCount === 5) cls += "bg-amber-700/80 hover:bg-amber-600 text-white border border-amber-500/40 ";
+      else if (tfCount > 0) cls += "bg-amber-900/60 hover:bg-amber-800 text-amber-200 border border-amber-600/40 ";
+      else cls += "bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 ";
       return cls;
     }
 
@@ -1326,15 +1271,14 @@
 
     function renderCurrentMCQQuestion() {
       const q = getQuestionByIndex(currentMCQIndex);
-
       document.getElementById("mcq-current-number").textContent = currentMCQIndex + 1;
       document.getElementById("mcq-indicator-tag").textContent = q.indicator;
       document.getElementById("mcq-question-text").textContent = q.q;
 
       const optContainer = document.getElementById("mcq-options-container");
       optContainer.innerHTML = "";
-
       const alphabet = ["A", "B", "C", "D"];
+
       q.options.forEach((optText, optIdx) => {
         const isSelected = userMCQAnswers[currentMCQIndex] === optIdx;
         const optBtn = document.createElement("button");
@@ -1344,40 +1288,33 @@
             ? 'bg-emerald-600/20 border-emerald-500 text-white ring-1 ring-emerald-500 shadow-md shadow-emerald-900/30' 
             : 'bg-slate-800/80 hover:bg-slate-800 border-slate-700 text-slate-200'
         }`;
-
         optBtn.innerHTML = `
           <span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-300'} flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
             ${alphabet[optIdx]}
           </span>
           <span class="leading-relaxed flex-grow text-justify">${optText}</span>
         `;
-
         optBtn.onclick = () => {
           userMCQAnswers[currentMCQIndex] = optIdx;
           renderCurrentMCQQuestion();
           updatePaletteClasses();
         };
-
         optContainer.appendChild(optBtn);
       });
 
       const btnPrev = document.getElementById("btn-prev-mcq");
       const btnNext = document.getElementById("btn-next-mcq");
-
       btnPrev.disabled = currentMCQIndex === 0;
       btnPrev.classList.toggle("opacity-50", currentMCQIndex === 0);
       btnPrev.classList.toggle("cursor-not-allowed", currentMCQIndex === 0);
 
-      if (currentMCQIndex === 14) {
-        btnNext.innerHTML = `<span>Lanjut ke Soal Benar-Salah (Bagian II)</span> <i class="fa-solid fa-arrow-right"></i>`;
-      } else {
-        btnNext.innerHTML = `<span>Selanjutnya</span> <i class="fa-solid fa-arrow-right"></i>`;
-      }
+      btnNext.innerHTML = currentMCQIndex === 14 
+        ? `<span>Lanjut ke Soal Benar-Salah (Bagian II)</span> <i class="fa-solid fa-arrow-right"></i>` 
+        : `<span>Selanjutnya</span> <i class="fa-solid fa-arrow-right"></i>`;
     }
 
     function navigateMCQ(delta) {
       const targetIdx = currentMCQIndex + delta;
-
       if (targetIdx >= 0 && targetIdx < 15) {
         currentMCQIndex = targetIdx;
         renderCurrentMCQQuestion();
@@ -1397,7 +1334,6 @@
       tfList.forEach((item, idx) => {
         const row = document.createElement("div");
         row.className = "p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3";
-        
         const isTrueSelected = userTFAnswers[idx] === true;
         const isFalseSelected = userTFAnswers[idx] === false;
 
@@ -1414,25 +1350,19 @@
               type="button" 
               onclick="selectTFAnswer(${idx}, true)" 
               class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1 cursor-pointer ${
-                isTrueSelected 
-                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-900/40 ring-1 ring-emerald-400' 
-                  : 'bg-slate-700/80 hover:bg-slate-700 text-slate-300'
+                isTrueSelected ? 'bg-emerald-600 text-white ring-1 ring-emerald-400' : 'bg-slate-700/80 hover:bg-slate-700 text-slate-300'
               }"
             >
-              <span>✓</span>
-              <span>Benar</span>
+              <span>✓ Benar</span>
             </button>
             <button 
               type="button" 
               onclick="selectTFAnswer(${idx}, false)" 
               class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1 cursor-pointer ${
-                isFalseSelected 
-                  ? 'bg-rose-600 text-white shadow-md shadow-rose-900/40 ring-1 ring-rose-400' 
-                  : 'bg-slate-700/80 hover:bg-slate-700 text-slate-300'
+                isFalseSelected ? 'bg-rose-600 text-white ring-1 ring-rose-400' : 'bg-slate-700/80 hover:bg-slate-700 text-slate-300'
               }"
             >
-              <span>✕</span>
-              <span>Salah</span>
+              <span>✕ Salah</span>
             </button>
           </div>
         `;
@@ -1465,24 +1395,17 @@
       quizActive = false;
 
       const pktData = FABEL_PACKETS[studentData.paket] || FABEL_PACKETS[1];
-
       let correctMCQCount = 0;
       for (let i = 0; i < 15; i++) {
-        const q = getQuestionByIndex(i);
-        if (userMCQAnswers[i] === q.answer) {
-          correctMCQCount++;
-        }
+        if (userMCQAnswers[i] === getQuestionByIndex(i).answer) correctMCQCount++;
       }
       const mcqScore = correctMCQCount * 5;
 
       let correctTFCount = 0;
       pktData.tfStimulus.questions.forEach((item, idx) => {
-        if (userTFAnswers[idx] === item.answer) {
-          correctTFCount++;
-        }
+        if (userTFAnswers[idx] === item.answer) correctTFCount++;
       });
       const tfScore = correctTFCount * 5;
-
       const finalScore = mcqScore + tfScore;
 
       let predikat = "Perlu Bimbingan (E)";
@@ -1506,13 +1429,16 @@
         kelas: studentData.kelas,
         paket: "Paket " + studentData.paket,
         score: finalScore,
-        mcqScore: mcqScore,
-        tfScore: tfScore,
+        mcqScore: `${mcqScore} / 75`,
+        tfScore: `${tfScore} / 25`,
         status: statusText,
         date: new Date().toLocaleString("id-ID")
       };
-      leaderboardData.unshift(record);
-      localStorage.setItem("FABEL_LEADERBOARD", JSON.stringify(leaderboardData));
+
+      // Tambahkan lokal & invalidate cache browser
+      leaderboardCache.data.unshift(record);
+      localStorage.setItem("FABEL_LEADERBOARD", JSON.stringify(leaderboardCache.data));
+      leaderboardCache.lastFetch = 0; // Trigger refresh saat membuka modal
 
       document.getElementById("screen-quiz").classList.add("hidden");
       document.getElementById("screen-result").classList.remove("hidden");
@@ -1528,36 +1454,20 @@
       const stepLabel = document.getElementById("sync-step-label");
       const durationLabel = document.getElementById("sync-duration-label");
 
-      progressBar.style.width = "0%";
-      progressBar.className = "h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 progress-bar-striped transition-all duration-300 ease-out";
-      percentBadge.textContent = "0%";
+      progressBar.style.width = "40%";
+      percentBadge.textContent = "40%";
+      indicator.className = "inline-block w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse";
+      text.textContent = "Mengirim data ke Google Spreadsheet...";
 
       const secureUrl = getSecureGASUrl();
+      const startTime = Date.now();
 
       if (!secureUrl) {
-        indicator.className = "inline-block w-2.5 h-2.5 rounded-full bg-emerald-400";
-        text.textContent = "Tersimpan aman di Pangkalan Data Lokal.";
-        stepLabel.textContent = "Pencatatan peringkat peserta berhasil diverifikasi.";
-        durationLabel.textContent = "Mode Offline / Lokal";
         progressBar.style.width = "100%";
-        progressBar.className = "h-full rounded-full bg-emerald-500";
         percentBadge.textContent = "100%";
+        text.textContent = "Tersimpan di Cache Lokal.";
         return;
       }
-
-      indicator.className = "inline-block w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse";
-      text.textContent = "Menghubungkan ke Google Apps Script...";
-      stepLabel.textContent = "Langkah 1/3: Mengirim data ke spreadsheet...";
-      progressBar.style.width = "30%";
-      percentBadge.textContent = "30%";
-
-      const startTime = Date.now();
-      const jsonParam = encodeURIComponent(JSON.stringify(resultData));
-      const getUrl = secureUrl + (secureUrl.includes("?") ? "&" : "?") + "data=" + jsonParam;
-
-      try {
-        fetch(getUrl, { mode: "no-cors", method: "GET" }).catch(() => {});
-      } catch (err) {}
 
       fetch(secureUrl, {
         method: "POST",
@@ -1567,8 +1477,10 @@
       }).then(() => {
         completeSyncAnimation(startTime);
       }).catch(() => {
-        const beaconImg = new Image();
-        beaconImg.src = getUrl;
+        // Fallback GET
+        const jsonParam = encodeURIComponent(JSON.stringify(resultData));
+        const img = new Image();
+        img.src = secureUrl + (secureUrl.includes("?") ? "&" : "?") + "data=" + jsonParam;
         completeSyncAnimation(startTime);
       });
     }
@@ -1581,21 +1493,16 @@
       const stepLabel = document.getElementById("sync-step-label");
       const durationLabel = document.getElementById("sync-duration-label");
 
-      progressBar.style.width = "75%";
-      percentBadge.textContent = "75%";
-      stepLabel.textContent = "Langkah 2/3: Menulis baris nilai & validasi data...";
-
       setTimeout(() => {
         const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
         progressBar.style.width = "100%";
         progressBar.className = "h-full rounded-full bg-emerald-500";
         percentBadge.textContent = "100%";
-        percentBadge.className = "px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold";
         indicator.className = "inline-block w-2.5 h-2.5 rounded-full bg-emerald-400";
-        text.textContent = "✓ Nilai berhasil otomatis masuk ke Google Spreadsheet!";
-        stepLabel.textContent = "Tercatat di sheet 'Database_Nilai_Kuis'";
-        durationLabel.textContent = `Selesai dalam ${elapsed} detik`;
-      }, 500);
+        text.textContent = "✓ Nilai berhasil dicatat ke Spreadsheet!";
+        stepLabel.textContent = "Tercatat di Sheet & Cache diperbarui.";
+        durationLabel.textContent = `Selesai: ${elapsed}s`;
+      }, 400);
     }
 
     function openCertificateModal() {
@@ -1603,19 +1510,12 @@
       document.getElementById("cert-sekolah").textContent = studentData.sekolah || "Sekolah Dasar";
       document.getElementById("cert-kelas").textContent = studentData.kelas || "6";
       document.getElementById("cert-paket").textContent = "Paket " + studentData.paket;
-
-      const score = document.getElementById("result-score").textContent;
-      const predikat = document.getElementById("result-predikat").textContent;
-      document.getElementById("cert-skor").textContent = score;
-      document.getElementById("cert-predikat").textContent = predikat;
+      document.getElementById("cert-skor").textContent = document.getElementById("result-score").textContent;
+      document.getElementById("cert-predikat").textContent = document.getElementById("result-predikat").textContent;
 
       const now = new Date();
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById("cert-tanggal").textContent = now.toLocaleDateString("id-ID", options);
-      
-      const regId = "FABEL/" + now.getFullYear() + "/" + String(now.getMonth()+1).padStart(2, '0') + "/" + Math.floor(1000 + Math.random() * 9000);
-      document.getElementById("cert-no").textContent = regId;
-
+      document.getElementById("cert-tanggal").textContent = now.toLocaleDateString("id-ID", { year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById("cert-no").textContent = "FABEL/" + now.getFullYear() + "/" + String(now.getMonth()+1).padStart(2, '0') + "/" + Math.floor(1000 + Math.random() * 9000);
       document.getElementById("modal-certificate").classList.remove("hidden");
     }
 
@@ -1627,14 +1527,9 @@
       const element = document.getElementById("certificate-print-area");
       if (!element || typeof html2canvas === "undefined") return;
 
-      html2canvas(element, {
-        scale: 2.5,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: "#ffffff"
-      }).then(canvas => {
+      html2canvas(element, { scale: 2.5, useCORS: true, allowTaint: true, backgroundColor: "#ffffff" }).then(canvas => {
         const link = document.createElement("a");
-        link.download = `Sertifikat_Fabel_${(studentData.nama || 'Peserta').replace(/\s+/g, '_')}.png`;
+        link.download = `Sertifikat_${(studentData.nama || 'Peserta').replace(/\s+/g, '_')}.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
       });
@@ -1644,40 +1539,111 @@
       const element = document.getElementById("certificate-print-area");
       if (!element || typeof html2pdf === "undefined") return;
 
-      const opt = {
+      html2pdf().set({
         margin: 5,
-        filename: `Sertifikat_Fabel_${(studentData.nama || 'Peserta').replace(/\s+/g, '_')}.pdf`,
+        filename: `Sertifikat_${(studentData.nama || 'Peserta').replace(/\s+/g, '_')}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2.5, useCORS: true, allowTaint: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+      }).from(element).save();
+    }
+
+    /**
+     * PENGAMBILAN DATA OPTIMAL DARI CLOUD SPREADSHEET
+     * Memakai Cache Browser (Poin 4), Limit Data (Poin 2 & 5), dan Cache Server (Poin 6)
+     */
+    function fetchLeaderboardFromCloud(forceRefresh = false) {
+      const secureUrl = getSecureGASUrl();
+      if (!secureUrl) return;
+
+      const now = Date.now();
+      // Jika tidak dipaksa refresh dan cache browser masih hangat (< 3 menit), pakai cache langsung
+      if (!forceRefresh && (now - leaderboardCache.lastFetch < CLIENT_CACHE_TTL_MS) && leaderboardCache.data.length > 0) {
+        renderLeaderboardTable();
+        return;
+      }
+
+      const spinIcon = document.getElementById("icon-refresh-spin");
+      if (spinIcon) spinIcon.classList.add("fa-spin");
+
+      const filterPaket = document.getElementById("filter-paket-select") ? document.getElementById("filter-paket-select").value : "ALL";
+      // Ambil hanya top 100 dengan filter paket langsung dari backend (Poin 2 & 5)
+      const reqUrl = `${secureUrl}${secureUrl.includes("?") ? "&" : "?"}action=getLeaderboard&limit=100&paket=${encodeURIComponent(filterPaket)}`;
+
+      fetch(reqUrl)
+        .then(res => res.json())
+        .then(json => {
+          if (json && json.status === "success" && Array.isArray(json.data)) {
+            handleCloudLeaderboardReceived(json.data);
+          } else {
+            fallbackLeaderboardJSONP(secureUrl, filterPaket);
+          }
+        })
+        .catch(() => {
+          fallbackLeaderboardJSONP(secureUrl, filterPaket);
+        })
+        .finally(() => {
+          if (spinIcon) spinIcon.classList.remove("fa-spin");
+        });
+    }
+
+    function fallbackLeaderboardJSONP(secureUrl, filterPaket) {
+      const cbName = "gas_cb_" + Date.now();
+      window[cbName] = function(json) {
+        if (json && json.status === "success" && Array.isArray(json.data)) {
+          handleCloudLeaderboardReceived(json.data);
+        }
+        delete window[cbName];
+        const el = document.getElementById(cbName);
+        if (el) el.remove();
+        const spin = document.getElementById("icon-refresh-spin");
+        if (spin) spin.classList.remove("fa-spin");
       };
 
-      html2pdf().set(opt).from(element).save();
+      const script = document.createElement("script");
+      script.id = cbName;
+      script.src = `${secureUrl}${secureUrl.includes("?") ? "&" : "?"}action=getLeaderboard&limit=100&paket=${encodeURIComponent(filterPaket)}&callback=${cbName}`;
+      document.body.appendChild(script);
+    }
+
+    function handleCloudLeaderboardReceived(dataList) {
+      if (Array.isArray(dataList)) {
+        leaderboardCache.data = dataList;
+        leaderboardCache.lastFetch = Date.now();
+        localStorage.setItem("FABEL_LEADERBOARD", JSON.stringify(dataList));
+        localStorage.setItem("FABEL_LAST_FETCH", String(leaderboardCache.lastFetch));
+      }
+      renderLeaderboardTable();
+    }
+
+    function handleFilterPaketChange() {
+      // Ambil data paket spesifik ke server
+      fetchLeaderboardFromCloud(true);
     }
 
     function openLeaderboardModal() {
       renderLeaderboardTable();
       document.getElementById("modal-leaderboard").classList.remove("hidden");
+      // Cek apakah perlu refresh dari cloud
+      const now = Date.now();
+      if (now - leaderboardCache.lastFetch > CLIENT_CACHE_TTL_MS || leaderboardCache.data.length === 0) {
+        fetchLeaderboardFromCloud(false);
+      }
     }
 
     function closeLeaderboardModal() {
       document.getElementById("modal-leaderboard").classList.add("hidden");
     }
 
-    function showLeaderboardFromNav() {
-      openLeaderboardModal();
-    }
-
     function renderLeaderboardTable() {
-      const filterPaket = document.getElementById("filter-paket-select").value;
+      const filterPaket = document.getElementById("filter-paket-select") ? document.getElementById("filter-paket-select").value : "ALL";
       const tbody = document.getElementById("leaderboard-tbody");
       tbody.innerHTML = "";
 
-      let list = [...leaderboardData];
+      let list = [...leaderboardCache.data];
       if (filterPaket !== "ALL") {
         list = list.filter(item => item.paket === filterPaket);
       }
-
       list.sort((a, b) => (Number(b.score) || 0) - (Number(a.score) || 0));
 
       document.getElementById("leaderboard-total-count").textContent = list.length;
@@ -1686,7 +1652,7 @@
         tbody.innerHTML = `
           <tr>
             <td colspan="7" class="text-center py-6 text-slate-500 italic">
-              Belum ada data nilai peserta untuk paket ini.
+              Belum ada data nilai peserta di pangkalan data untuk paket ini.
             </td>
           </tr>
         `;
@@ -1702,10 +1668,8 @@
         else if (idx === 1) rankBadge = `<span class="w-6 h-6 rounded-full bg-slate-300 text-slate-950 font-black flex items-center justify-center mx-auto text-[11px]">2</span>`;
         else if (idx === 2) rankBadge = `<span class="w-6 h-6 rounded-full bg-amber-700 text-white font-black flex items-center justify-center mx-auto text-[11px]">3</span>`;
 
-        let statusClass = "text-emerald-400 bg-emerald-500/10 border-emerald-500/20";
-        if (item.status === "Keluar Sebelum Selesai") {
-          statusClass = "text-rose-400 bg-rose-500/10 border-rose-500/20";
-        }
+        const isViolation = item.status === "Keluar Sebelum Selesai";
+        const statusClass = isViolation ? "text-rose-400 bg-rose-500/10 border-rose-500/20" : "text-emerald-400 bg-emerald-500/10 border-emerald-500/20";
 
         tr.innerHTML = `
           <td class="py-3 px-3 text-center">${rankBadge}</td>
@@ -1759,10 +1723,7 @@
       document.getElementById("custom-confirm-text").textContent = message;
       modal.classList.remove("hidden");
 
-      document.getElementById("custom-confirm-cancel").onclick = () => {
-        modal.classList.add("hidden");
-      };
-
+      document.getElementById("custom-confirm-cancel").onclick = () => modal.classList.add("hidden");
       document.getElementById("custom-confirm-ok").onclick = () => {
         modal.classList.add("hidden");
         if (typeof onConfirmCallback === "function") onConfirmCallback();
